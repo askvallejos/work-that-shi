@@ -9,13 +9,12 @@ import { WorkoutSet } from '../types/workout';
 interface SetRowProps {
   set: WorkoutSet;
   exerciseName: string;
-  restTime: number;
   isCompleted: boolean;
   onToggle: (setNumber: number) => void;
   onSkip: (setNumber: number) => void;
 }
 
-export const SetRow = ({ set, exerciseName, restTime, isCompleted, onToggle, onSkip }: SetRowProps) => {
+export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: SetRowProps) => {
   const [isSkipping, setIsSkipping] = useState(false);
 
   const handleSwipeStart = (e: React.TouchEvent) => {
@@ -88,10 +87,6 @@ export const SetRow = ({ set, exerciseName, restTime, isCompleted, onToggle, onS
         
         <div className="flex-1 text-center text-sm">
           {formatWeight(set.weight)}
-        </div>
-        
-        <div className="w-16 text-center text-xs text-muted-foreground">
-          {restTime}s
         </div>
       </div>
       

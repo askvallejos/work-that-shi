@@ -61,7 +61,14 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   const progress = (completedCount / totalSets) * 100;
 
   const createSetKey = (exerciseName: string, setNumber: number) => {
-    return parseInt(`${exerciseName}-${setNumber}`);
+    // Create a hash from exercise name to avoid naming conflicts
+    let hash = 0;
+    for (let i = 0; i < exerciseName.length; i++) {
+      const char = exerciseName.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32-bit integer
+    }
+    return Math.abs(hash) * 1000 + setNumber; // Ensure unique keys
   };
 
   const handleSetToggle = (exerciseName: string, setNumber: number) => {

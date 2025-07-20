@@ -21,8 +21,19 @@ export const ExerciseCard = ({
   isOpen,
   onOpenChange
 }: ExerciseCardProps) => {
+  const createSetKey = (exerciseName: string, setNumber: number) => {
+    // Create a hash from exercise name to avoid naming conflicts
+    let hash = 0;
+    for (let i = 0; i < exerciseName.length; i++) {
+      const char = exerciseName.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32-bit integer
+    }
+    return Math.abs(hash) * 1000 + setNumber; // Ensure unique keys
+  };
+
   const completedCount = exercise.sets.filter(workoutSet => 
-    completedSets.has(parseInt(`${exercise.exercise}-${workoutSet.set}`))
+    completedSets.has(createSetKey(exercise.exercise, workoutSet.set))
   ).length;
   
   const totalSets = exercise.sets.length;
@@ -62,7 +73,6 @@ export const ExerciseCard = ({
               <div className="flex-shrink-0 w-16">Type</div>
               <div className="flex-1 text-center">Reps</div>
               <div className="flex-1 text-center">Weight</div>
-              <div className="w-16 text-center">Rest</div>
             </div>
             
             {/* Sets */}
@@ -71,8 +81,7 @@ export const ExerciseCard = ({
                 key={workoutSet.set}
                 set={workoutSet}
                 exerciseName={exercise.exercise}
-                restTime={exercise.rest_between_sets}
-                isCompleted={completedSets.has(parseInt(`${exercise.exercise}-${workoutSet.set}`))}
+                isCompleted={completedSets.has(createSetKey(exercise.exercise, workoutSet.set))}
                 onToggle={(setNumber) => onSetToggle(exercise.exercise, setNumber)}
                 onSkip={(setNumber) => onSetSkip(exercise.exercise, setNumber)}
               />
