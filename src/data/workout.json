@@ -1,0 +1,241 @@
+{
+  "workout_plan": {
+    "monday": {
+      "name": "Push A (Strength Focus)",
+      "exercises": [
+        {
+          "exercise": "Bench Press",
+          "sets": [
+            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 95 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 155 },
+            { "set": 3, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 225 },
+            { "set": 4, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 225 },
+            { "set": 5, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 225 },
+            { "set": 6, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 225 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Overhead Press",
+          "sets": [
+            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 45 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 85 },
+            { "set": 3, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 135 },
+            { "set": 4, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 135 },
+            { "set": 5, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 135 },
+            { "set": 6, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 135 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Lateral Raise",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 12, "weight": 25 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 12, "weight": 25 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 12, "weight": 25 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 12, "weight": 25 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Overhead Tricep Extension",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 70 },
+            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 70 },
+            { "set": 3, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 70 },
+            { "set": 4, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 70 }
+          ],
+          "rest_between_sets": 90
+        }
+      ]
+    },
+    "tuesday": {
+      "name": "Pull A (Strength Focus)",
+      "exercises": [
+        {
+          "exercise": "Pull-up",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 25 },
+            { "set": 2, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 25 },
+            { "set": 3, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 25 },
+            { "set": 4, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 25 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Bent-over Row",
+          "sets": [
+            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 75 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 135 },
+            { "set": 3, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 185 },
+            { "set": 4, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 185 },
+            { "set": 5, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 185 },
+            { "set": 6, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 185 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Rear Delt Fly",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 12, "weight": 20 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 12, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 12, "weight": 20 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 12, "weight": 20 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Seated Incline Curl",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 35 },
+            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 35 },
+            { "set": 3, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 35 },
+            { "set": 4, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 35 }
+          ],
+          "rest_between_sets": 90
+        }
+      ]
+    },
+    "wednesday": {
+      "name": "Accessory",
+      "exercises": [
+        {
+          "exercise": "Shrugs",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 250 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 250 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 250 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 250 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Face Pulls",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 12, "reps_to": 20, "weight": 40 },
+            { "set": 2, "type": "work", "reps_from": 12, "reps_to": 20, "weight": 40 },
+            { "set": 3, "type": "work", "reps_from": 12, "reps_to": 20, "weight": 40 },
+            { "set": 4, "type": "work", "reps_from": 12, "reps_to": 20, "weight": 40 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Barbell Wrist Curls",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 12, "reps_to": 20, "weight": 50 },
+            { "set": 2, "type": "work", "reps_from": 12, "reps_to": 20, "weight": 50 },
+            { "set": 3, "type": "work", "reps_from": 12, "reps_to": 20, "weight": 50 },
+            { "set": 4, "type": "work", "reps_from": 12, "reps_to": 20, "weight": 50 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Reverse Curl",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 45 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 45 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 45 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 45 }
+          ],
+          "rest_between_sets": 90
+        }
+      ]
+    },
+    "thursday": {
+      "name": "Push B (Endurance Focus)",
+      "exercises": [
+        {
+          "exercise": "Bench Press",
+          "sets": [
+            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 65 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 95 },
+            { "set": 3, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 135 },
+            { "set": 4, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 135 },
+            { "set": 5, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 135 },
+            { "set": 6, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 135 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Overhead Press",
+          "sets": [
+            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 25 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 55 },
+            { "set": 3, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 85 },
+            { "set": 4, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 85 },
+            { "set": 5, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 85 },
+            { "set": 6, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 85 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Lateral Raise",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 15 },
+            { "set": 2, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 15 },
+            { "set": 3, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 15 },
+            { "set": 4, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 15 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Overhead Tricep Extension",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 45 },
+            { "set": 2, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 45 },
+            { "set": 3, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 45 },
+            { "set": 4, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 45 }
+          ],
+          "rest_between_sets": 60
+        }
+      ]
+    },
+    "friday": {
+      "name": "Pull B (Endurance Focus)",
+      "exercises": [
+        {
+          "exercise": "Pull-up",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 0 },
+            { "set": 2, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 0 },
+            { "set": 3, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 0 },
+            { "set": 4, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 0 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Bent-over Row",
+          "sets": [
+            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 45 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 75 },
+            { "set": 3, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 115 },
+            { "set": 4, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 115 },
+            { "set": 5, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 115 },
+            { "set": 6, "type": "work", "reps_from": 15, "reps_to": 20, "weight": 115 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Rear Delt Fly",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 10 },
+            { "set": 2, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 10 },
+            { "set": 3, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 10 },
+            { "set": 4, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 10 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Seated Incline Curl",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 20 },
+            { "set": 2, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 20 },
+            { "set": 4, "type": "work", "reps_from": 15, "reps_to": 25, "weight": 20 }
+          ],
+          "rest_between_sets": 60
+        }
+      ]
+    }
+  }
+}

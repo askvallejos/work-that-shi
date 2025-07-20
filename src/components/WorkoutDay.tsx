@@ -1,0 +1,235 @@
+import { useState, useEffect } from 'react';
+import { MoreVertical, RotateCcw, Calendar } from 'lucide-react';
+import { ExerciseCard } from './ExerciseCard';
+import { TimerBanner } from './TimerBanner';
+import { useTimer } from '../hooks/useTimer';
+import { generateDayColor } from '../utils/dateHelpers';
+import { Button } from './ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
+
+import { WorkoutSet, Exercise, WorkoutData } from '../types/workout';
+
+interface WorkoutDayProps {
+  day: string;
+  workout: WorkoutData;
+}
+
+export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
+  const [completedSets, setCompletedSets] = useState<globalThis.Set<number>>(new globalThis.Set());
+  const [openExercises, setOpenExercises] = useState<globalThis.Set<string>>(new globalThis.Set([workout.exercises[0]?.exercise]));
+  const { timer, startTimer, stopTimer, adjustTimer } = useTimer();
+
+  const dayColor = generateDayColor(day);
+
+  // Load progress from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem(`workout-progress-${day}`);
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        setCompletedSets(new globalThis.Set(data.completedSets));
+        setOpenExercises(new globalThis.Set(data.openExercises));
+      } catch (error) {
+        console.warn('Failed to load progress:', error);
+      }
+    }
+  }, [day]);
+
+  // Save progress to localStorage
+  useEffect(() => {
+    const data = {
+      completedSets: Array.from(completedSets),
+      openExercises: Array.from(openExercises)
+    };
+    localStorage.setItem(`workout-progress-${day}`, JSON.stringify(data));
+  }, [completedSets, openExercises, day]);
+
+  // Request notification permission
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+  }, []);
+
+  const totalSets = workout.exercises.reduce((sum, exercise) => sum + exercise.sets.length, 0);
+  const completedCount = completedSets.size;
+  const progress = (completedCount / totalSets) * 100;
+
+  const createSetKey = (exerciseName: string, setNumber: number) => {
+    return parseInt(`${exerciseName}-${setNumber}`);
+  };
+
+  const handleSetToggle = (exerciseName: string, setNumber: number) => {
+    const setKey = createSetKey(exerciseName, setNumber);
+    const newCompletedSets = new globalThis.Set(completedSets);
+    
+    if (completedSets.has(setKey)) {
+      newCompletedSets.delete(setKey);
+    } else {
+      newCompletedSets.add(setKey);
+      
+      // Find the exercise and start rest timer
+      const exercise = workout.exercises.find(ex => ex.exercise === exerciseName);
+      if (exercise) {
+        startTimer(exercise.rest_between_sets);
+      }
+      
+      // Auto-scroll to next unfinished set
+      setTimeout(() => {
+        const nextUnfinishedSet = findNextUnfinishedSet(newCompletedSets);
+        if (nextUnfinishedSet) {
+          const element = document.getElementById(`set-${nextUnfinishedSet.exercise}-${nextUnfinishedSet.set}`);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }, 100);
+    }
+    
+    setCompletedSets(newCompletedSets);
+  };
+
+  const findNextUnfinishedSet = (completed: globalThis.Set<number>) => {
+    for (const exercise of workout.exercises) {
+      for (const workoutSet of exercise.sets) {
+        const setKey = createSetKey(exercise.exercise, workoutSet.set);
+        if (!completed.has(setKey)) {
+          return { exercise: exercise.exercise, set: workoutSet.set };
+        }
+      }
+    }
+    return null;
+  };
+
+  const handleSetSkip = (exerciseName: string, setNumber: number) => {
+    const setKey = createSetKey(exerciseName, setNumber);
+    const newCompletedSets = new globalThis.Set(completedSets);
+    newCompletedSets.add(setKey);
+    setCompletedSets(newCompletedSets);
+  };
+
+  const handleExerciseToggle = (exerciseName: string, isOpen: boolean) => {
+    const newOpenExercises = new globalThis.Set(openExercises);
+    if (isOpen) {
+      newOpenExercises.add(exerciseName);
+    } else {
+      newOpenExercises.delete(exerciseName);
+    }
+    setOpenExercises(newOpenExercises);
+  };
+
+  const resetDay = () => {
+    setCompletedSets(new globalThis.Set());
+    setOpenExercises(new globalThis.Set([workout.exercises[0]?.exercise]));
+    stopTimer();
+    localStorage.removeItem(`workout-progress-${day}`);
+  };
+
+  return (
+    <div className="min-h-screen bg-background pb-20">
+      {timer.isActive && (
+        <TimerBanner
+          timeLeft={timer.timeLeft}
+          initialTime={timer.initialTime}
+          onAdjust={adjustTimer}
+          onStop={stopTimer}
+        />
+      )}
+      
+      {/* Sticky Header */}
+      <div 
+        className={`sticky top-0 z-40 p-4 border-b border-border backdrop-blur-sm bg-background/80 transition-all duration-300 ${
+          timer.isActive ? 'mt-24' : ''
+        }`}
+        style={{ '--day-color': dayColor } as React.CSSProperties}
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Calendar 
+              className="h-6 w-6" 
+              style={{ color: dayColor }}
+            />
+            <div>
+              <h1 className="text-xl font-bold capitalize">{day}</h1>
+              <p className="text-sm text-muted-foreground">{workout.name}</p>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            {/* Progress Ring */}
+            <div className="relative w-12 h-12">
+              <svg className="w-12 h-12 transform -rotate-90">
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="20"
+                  stroke="hsl(var(--muted))"
+                  strokeWidth="3"
+                  fill="none"
+                />
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="20"
+                  stroke={dayColor}
+                  strokeWidth="3"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 20}`}
+                  strokeDashoffset={`${2 * Math.PI * 20 * (1 - progress / 100)}`}
+                  className="transition-all duration-500"
+                />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-xs font-semibold">{Math.round(progress)}%</span>
+              </div>
+            </div>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                  <MoreVertical className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={resetDay}>
+                  <RotateCcw className="h-4 w-4 mr-2" />
+                  Reset Day
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+        
+        <div className="mt-3 text-sm text-muted-foreground">
+          {completedCount} / {totalSets} sets completed
+        </div>
+      </div>
+
+      {/* Exercises */}
+      <div className="p-4 space-y-4 animate-fade-in">
+        {workout.exercises.map((exercise, index) => (
+          <div
+            key={exercise.exercise}
+            style={{ animationDelay: `${index * 0.1}s` }}
+            className="animate-fade-in"
+          >
+            <ExerciseCard
+              exercise={exercise}
+              completedSets={completedSets}
+              onSetToggle={handleSetToggle}
+              onSetSkip={handleSetSkip}
+              isOpen={openExercises.has(exercise.exercise)}
+              onOpenChange={(open) => handleExerciseToggle(exercise.exercise, open)}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
