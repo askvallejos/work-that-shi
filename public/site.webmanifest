@@ -1,6 +1,6 @@
 {
-  "name": "Workout Tracker - Train Smart",
-  "short_name": "Workout",
+  "name": "work that shi",
+  "short_name": "work that shi",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -19,5 +19,5 @@
   "orientation": "portrait",
   "start_url": "/",
   "scope": "/",
-  "description": "Interactive workout tracking app with rest timers and progress tracking"
+  "description": "workit yall"
 }

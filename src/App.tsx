@@ -52,7 +52,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <div className="min-h-screen bg-background">
-          <div className="container mx-auto px-4 py-6 max-w-md">
+          <div className="container mx-auto px-4 py-6 w-lg">
             <DaySelector 
               selectedDay={currentDay}
               onDayChange={handleDayChange}

@@ -9,19 +9,8 @@ export const RestDay = ({ day }: RestDayProps) => {
   const dayColor = generateDayColor(day);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen bg-background p-6">
       <div className="text-center max-w-md">
-        {/* Rest Day Icon */}
-        <div 
-          className="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center"
-          style={{ backgroundColor: `${dayColor}20`, border: `2px solid ${dayColor}` }}
-        >
-          <Moon 
-            className="h-12 w-12" 
-            style={{ color: dayColor }}
-          />
-        </div>
-
         {/* Title */}
         <h1 className="text-3xl font-bold mb-2 capitalize">
           {day}
@@ -38,27 +27,6 @@ export const RestDay = ({ day }: RestDayProps) => {
             Your body grows stronger during rest. Use this time to stretch, 
             hydrate, and prepare for your next workout session.
           </p>
-        </div>
-
-        {/* Motivational GIF Placeholder */}
-        <div 
-          className="w-full h-48 rounded-lg border border-border flex items-center justify-center"
-          style={{ backgroundColor: `${dayColor}10` }}
-        >
-          <div className="text-center">
-            <div 
-              className="w-16 h-16 mx-auto mb-3 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: `${dayColor}30` }}
-            >
-              <Calendar 
-                className="h-8 w-8" 
-                style={{ color: dayColor }}
-              />
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Rest & Recovery Zone
-            </p>
-          </div>
         </div>
       </div>
     </div>
