@@ -60,25 +60,6 @@ export const RestDay = ({ day }: RestDayProps) => {
             </p>
           </div>
         </div>
-
-        {/* Recovery Tips */}
-        <div className="mt-8 space-y-3 text-left">
-          <h3 className="font-semibold text-center mb-4">Recovery Tips</h3>
-          <div className="grid grid-cols-1 gap-3">
-            <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
-              <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-sm">Stay hydrated throughout the day</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
-              <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-sm">Get 7-9 hours of quality sleep</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
-              <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-sm">Light stretching or walking</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
