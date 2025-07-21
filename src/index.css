@@ -36,7 +36,7 @@
     --ring: 142 86% 56%;
 
     /* Workout-specific colors */
-    --warm-up: 43 96% 56%;
+    --warm-up: 217 91% 60%;
     --warm-up-foreground: 0 0% 0%;
     
     --work: 142 86% 56%;
@@ -95,11 +95,11 @@
 @layer components {
   /* Workout-specific components */
   .set-chip {
-    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium transition-all;
+    @apply inline-flex items-center justify-center px-2 py-1 rounded-full text-xs font-medium transition-all min-w-[70px];
   }
 
   .set-chip.warm-up {
-    @apply bg-amber-500/20 text-amber-300 border border-amber-500/30;
+    @apply bg-blue-500/20 text-blue-300 border border-blue-500/30;
   }
 
   .set-chip.work {

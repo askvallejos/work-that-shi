@@ -75,8 +75,8 @@ export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: Set
           {set.set}
         </div>
         
-        <div className="flex-shrink-0">
-          <span className={`set-chip ${set.type}`}>
+        <div className="flex-shrink-0 w-16">
+          <span className={`set-chip ${set.type === 'warm_up' ? 'warm-up' : 'work'} w-full text-center`}>
             {set.type === 'warm_up' ? 'Warm-up' : 'Work'}
           </span>
         </div>
