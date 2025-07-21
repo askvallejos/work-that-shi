@@ -1,5 +1,4 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar } from "lucide-react";
 
 interface DaySelectorProps {
   selectedDay: string;
@@ -19,8 +18,7 @@ export const DaySelector = ({ selectedDay, onDayChange, availableDays }: DaySele
   };
 
   return (
-    <div className="flex items-center gap-2 mb-4">
-      <Calendar className="h-4 w-4 text-muted-foreground" />
+    <div className="flex justify-center items-center gap-2 mb-4">
       <Select value={selectedDay} onValueChange={onDayChange}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select day" />

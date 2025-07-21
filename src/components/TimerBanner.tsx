@@ -13,7 +13,7 @@ export const TimerBanner = ({ timeLeft, initialTime, onAdjust, onStop }: TimerBa
   const progress = initialTime > 0 ? ((initialTime - timeLeft) / initialTime) * 100 : 0;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 timer-banner p-4 animate-slide-up">
+    <div className="fixed top-0 left-0 right-0 z-50 timer-banner p-4 animate-slide-up mt-12">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <Clock className="h-5 w-5 text-white" />

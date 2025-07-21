@@ -54,7 +54,7 @@ export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: Set
   };
 
   return (
-    <div
+    <tr
       className={`
         swipe-hint relative transition-all duration-200
         ${isCompleted ? 'opacity-60 bg-success/10' : ''}
@@ -62,7 +62,7 @@ export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: Set
       `}
       onTouchStart={handleSwipeStart}
     >
-      <div className="flex items-center gap-3 p-3 border-b border-border/50">
+      <td className="p-3 border-b border-border/50 relative">
         <div className="touch-target flex items-center justify-center">
           <Checkbox
             checked={isCompleted}
@@ -70,42 +70,42 @@ export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: Set
             className="h-5 w-5"
           />
         </div>
-        
-        <div className="w-8 text-center text-sm font-medium text-muted-foreground">
-          {set.set}
-        </div>
-        
-        <div className="flex-shrink-0 w-16">
-          <span className={`set-chip ${set.type === 'warm_up' ? 'warm-up' : 'work'} w-full text-center`}>
-            {set.type === 'warm_up' ? 'Warm-up' : 'Work'}
-          </span>
-        </div>
-        
-        <div className="flex-1 text-center text-sm font-medium">
-          {formatReps(set.reps_from, set.reps_to)}
-        </div>
-        
-        <div className="flex-1 text-center text-sm">
-          {formatWeight(set.weight)}
-        </div>
-      </div>
+      </td>
       
-      {isSkipping && (
-        <div className="absolute inset-0 bg-destructive/20 flex items-center justify-end pr-4">
-          <Button
-            variant="destructive"
-            size="sm"
-            onClick={() => {
-              onSkip(set.set);
-              setIsSkipping(false);
-            }}
-            className="animate-fade-in"
-          >
-            <Trash2 className="h-4 w-4 mr-1" />
-            Skip
-          </Button>
-        </div>
-      )}
-    </div>
+      <td className="p-3 w-8 text-center text-sm font-medium text-muted-foreground border-b border-border/50 relative">
+        {set.set}
+      </td>
+      
+      <td className="p-3 w-16 border-b border-border/50 relative">
+        <span className={`set-chip ${set.type === 'warm_up' ? 'warm-up' : 'work'} w-full text-center`}>
+          {set.type === 'warm_up' ? 'Warm-up' : 'Work'}
+        </span>
+      </td>
+      
+      <td className="p-3 text-center text-sm font-medium border-b border-border/50 relative">
+        {formatReps(set.reps_from, set.reps_to)}
+      </td>
+      
+      <td className="p-3 text-center text-sm border-b border-border/50 relative">
+        {formatWeight(set.weight)}
+        
+        {isSkipping && (
+          <div className="absolute inset-0 left-[-100%] right-[-100%] top-0 bottom-0 bg-destructive/20 flex items-center justify-end pr-4">
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={() => {
+                onSkip(set.set);
+                setIsSkipping(false);
+              }}
+              className="animate-fade-in"
+            >
+              <Trash2 className="h-4 w-4 mr-1" />
+              Skip
+            </Button>
+          </div>
+        )}
+      </td>
+    </tr>
   );
 };

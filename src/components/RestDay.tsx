@@ -10,7 +10,7 @@ export const RestDay = ({ day }: RestDayProps) => {
 
   return (
     <div className="min-h-screen bg-background p-6">
-      <div className="text-center max-w-md">
+      <div className="text-center max-w-md flex flex-col items-center justify-center mx-auto">
         {/* Title */}
         <h1 className="text-3xl font-bold mb-2 capitalize">
           {day}

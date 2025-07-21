@@ -66,26 +66,32 @@ export const ExerciseCard = ({
         
         <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
           <div className="border-t border-border">
-            {/* Table Header */}
-            <div className="flex items-center gap-3 p-3 bg-muted/30 text-xs font-medium text-muted-foreground border-b border-border/50">
-              <div className="w-8"></div>
-              <div className="w-8 text-center">Set</div>
-              <div className="flex-shrink-0 w-16">Type</div>
-              <div className="flex-1 text-center">Reps</div>
-              <div className="flex-1 text-center">Weight</div>
-            </div>
-            
-            {/* Sets */}
-            {exercise.sets.map((workoutSet) => (
-              <SetRow
-                key={workoutSet.set}
-                set={workoutSet}
-                exerciseName={exercise.exercise}
-                isCompleted={completedSets.has(createSetKey(exercise.exercise, workoutSet.set))}
-                onToggle={(setNumber) => onSetToggle(exercise.exercise, setNumber)}
-                onSkip={(setNumber) => onSetSkip(exercise.exercise, setNumber)}
-              />
-            ))}
+            <table className="w-full border-collapse">
+              {/* Table Header */}
+              <thead>
+                <tr className="bg-muted/30 text-xs font-medium text-muted-foreground border-b border-border/50">
+                  <th className="p-3 w-8"></th>
+                  <th className="p-3 w-8 text-center">Set</th>
+                  <th className="p-3 w-16 text-left">Type</th>
+                  <th className="p-3 text-center">Reps</th>
+                  <th className="p-3 text-center">Weight</th>
+                </tr>
+              </thead>
+              
+              {/* Sets */}
+              <tbody>
+                {exercise.sets.map((workoutSet) => (
+                  <SetRow
+                    key={workoutSet.set}
+                    set={workoutSet}
+                    exerciseName={exercise.exercise}
+                    isCompleted={completedSets.has(createSetKey(exercise.exercise, workoutSet.set))}
+                    onToggle={(setNumber) => onSetToggle(exercise.exercise, setNumber)}
+                    onSkip={(setNumber) => onSetSkip(exercise.exercise, setNumber)}
+                  />
+                ))}
+              </tbody>
+            </table>
           </div>
         </CollapsibleContent>
       </div>
