@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 
-import { WorkoutSet, Exercise, WorkoutData } from '../types/workout';
+import { WorkoutData } from '../types/workout';
 
 interface WorkoutDayProps {
   day: string;

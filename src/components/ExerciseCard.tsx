@@ -2,7 +2,7 @@ import { ChevronDown } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { SetRow } from './SetRow';
 
-import { WorkoutSet, Exercise } from '../types/workout';
+import { Exercise } from '../types/workout';
 
 interface ExerciseCardProps {
   exercise: Exercise;
