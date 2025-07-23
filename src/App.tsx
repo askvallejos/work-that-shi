@@ -15,7 +15,6 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [currentDay, setCurrentDay] = useState<string>(() => {
-    // Check for hash route first, then fall back to current day
     return getDayFromHash() || getCurrentDay();
   });
   
@@ -36,8 +35,6 @@ const App = () => {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [isManualSelection]);
 
-
-
   const workoutPlan = workoutData as WorkoutPlan;
   const availableDays = Object.keys(workoutPlan.workout_plan);
   const workout = workoutPlan.workout_plan[currentDay as keyof typeof workoutPlan.workout_plan];
@@ -45,7 +42,6 @@ const App = () => {
   const handleDayChange = (day: string) => {
     setCurrentDay(day);
     setIsManualSelection(true);
-    // Update URL hash to reflect selection
     window.location.hash = `#/${day}`;
   };
 

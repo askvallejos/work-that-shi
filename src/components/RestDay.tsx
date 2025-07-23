@@ -1,5 +1,5 @@
-import { Calendar, Coffee, Moon } from 'lucide-react';
-import { generateDayColor } from '../utils/dateHelpers';
+import { Calendar, Coffee } from "lucide-react";
+import { generateDayColor } from "../utils/dateHelpers";
 
 interface RestDayProps {
   day: string;
@@ -9,25 +9,26 @@ export const RestDay = ({ day }: RestDayProps) => {
   const dayColor = generateDayColor(day);
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="text-center max-w-md flex flex-col items-center justify-center mx-auto">
-        {/* Title */}
-        <h1 className="text-3xl font-bold mb-2 capitalize">
-          {day}
-        </h1>
-        <h2 className="text-xl text-muted-foreground mb-6">
-          Rest Day
-        </h2>
-
-        {/* Message */}
-        <div className="bg-card border border-border rounded-lg p-6 mb-8">
-          <Coffee className="h-8 w-8 mx-auto mb-4 text-muted-foreground" />
-          <p className="text-lg mb-2">Time to recover!</p>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Your body grows stronger during rest. Use this time to stretch, 
-            hydrate, and prepare for your next workout session.
-          </p>
-        </div>
+    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6 p-8">
+      <div 
+        className="p-4 rounded-full"
+        style={{ backgroundColor: `${dayColor}20` }}
+      >
+        <Coffee className="h-12 w-12" style={{ color: dayColor }} />
+      </div>
+      
+      <div>
+        <h1 className="text-3xl font-bold capitalize mb-2">{day}</h1>
+        <p className="text-xl text-muted-foreground">Rest Day</p>
+      </div>
+      
+      <div className="max-w-md space-y-4">
+        <p className="text-lg text-muted-foreground">
+          Take a well-deserved break! Recovery is just as important as training.
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Stay hydrated, get good sleep, and prepare for your next workout.
+        </p>
       </div>
     </div>
   );

@@ -10,12 +10,10 @@ class AudioManager {
 
   private initializeAudio() {
     try {
-      // Pre-create the audio element
       this.audio = new Audio('/sound/censor-beep-1-372459.mp3');
       this.audio.preload = 'auto';
       this.audio.volume = 0.8;
       
-      // Set up audio event listeners
       this.audio.addEventListener('canplaythrough', () => {
         console.log('Audio pre-loaded successfully');
       });
@@ -29,12 +27,10 @@ class AudioManager {
     }
   }
 
-  // Initialize audio context on first user interaction
   async initializeAudioContext() {
     if (this.isInitialized) return true;
 
     try {
-      // Create or resume audio context
       if (!this.audioContext) {
         this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
       }
@@ -43,7 +39,6 @@ class AudioManager {
         await this.audioContext.resume();
       }
 
-      // Load and prepare the audio
       if (this.audio) {
         await this.audio.load();
         this.isInitialized = true;
@@ -64,7 +59,6 @@ class AudioManager {
         return false;
       }
 
-      // Ensure audio context is initialized
       if (!this.isInitialized) {
         const initialized = await this.initializeAudioContext();
         if (!initialized) {
@@ -73,10 +67,7 @@ class AudioManager {
         }
       }
 
-      // Reset audio to beginning
       this.audio.currentTime = 0;
-      
-      // Play the audio
       await this.audio.play();
       console.log('Alarm sound played successfully');
       return true;
@@ -87,7 +78,6 @@ class AudioManager {
     }
   }
 
-  // Test if audio can be played (useful for debugging)
   async testAudio(): Promise<boolean> {
     const success = await this.playAlarm();
     if (success) {
@@ -99,10 +89,9 @@ class AudioManager {
   }
 }
 
-// Create singleton instance
+// Singleton instance for audio management
 const audioManager = new AudioManager();
 
-// Main API functions
 export const playAlarmSound = async (): Promise<boolean> => {
   console.log('Playing alarm sound...');
   return await audioManager.playAlarm();

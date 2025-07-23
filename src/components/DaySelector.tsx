@@ -29,7 +29,6 @@ export const DaySelector = ({ selectedDay, onDayChange, availableDays }: DaySele
               {dayNames[day]}
             </SelectItem>
           ))}
-          {/* Show rest days too */}
           {!availableDays.includes("saturday") && (
             <SelectItem value="saturday">Saturday (Rest)</SelectItem>
           )}

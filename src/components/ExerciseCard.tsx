@@ -21,15 +21,15 @@ export const ExerciseCard = ({
   isOpen,
   onOpenChange
 }: ExerciseCardProps) => {
+  // Generate deterministic keys to avoid exercise name conflicts
   const createSetKey = (exerciseName: string, setNumber: number) => {
-    // Create a hash from exercise name to avoid naming conflicts
     let hash = 0;
     for (let i = 0; i < exerciseName.length; i++) {
       const char = exerciseName.charCodeAt(i);
       hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32-bit integer
+      hash = hash & hash;
     }
-    return Math.abs(hash) * 1000 + setNumber; // Ensure unique keys
+    return Math.abs(hash) * 1000 + setNumber;
   };
 
   const completedCount = exercise.sets.filter(workoutSet => 
@@ -67,7 +67,6 @@ export const ExerciseCard = ({
         <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
           <div className="border-t border-border">
             <table className="w-full border-collapse">
-              {/* Table Header */}
               <thead>
                 <tr className="bg-muted/30 text-xs font-medium text-muted-foreground border-b border-border/50">
                   <th className="p-3 w-8"></th>
@@ -78,7 +77,6 @@ export const ExerciseCard = ({
                 </tr>
               </thead>
               
-              {/* Sets */}
               <tbody>
                 {exercise.sets.map((workoutSet) => (
                   <SetRow

@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Workout App Design System - Dark AMOLED Theme */
-
 @layer base {
   :root {
     /* Dark AMOLED theme */
@@ -111,7 +109,6 @@
 }
 
 @layer components {
-  /* Workout-specific components */
   .set-chip {
     @apply inline-flex items-center justify-center px-2 py-1 rounded-full text-xs font-medium transition-all min-w-[70px];
   }

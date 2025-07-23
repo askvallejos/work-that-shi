@@ -48,7 +48,7 @@ export const useTimer = () => {
       intervalRef.current = setInterval(() => {
         setTimer(prev => {
           if (prev.timeLeft <= 1) {
-            // Timer finished - trigger all notifications
+            // Multi-modal notifications: sound, haptic, and system notification
             (async () => {
               try {
                 await playAlarmSound();
@@ -59,7 +59,6 @@ export const useTimer = () => {
             
             triggerHapticFeedback();
             
-            // Show notification
             if ('Notification' in window && Notification.permission === 'granted') {
               new Notification('Rest Timer Complete!', {
                 body: 'Time for your next set!',

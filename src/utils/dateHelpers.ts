@@ -5,22 +5,22 @@ export const getCurrentDay = (): string => {
 };
 
 export const getDayFromHash = (): string | null => {
-  const hash = window.location.hash.replace('#/', '');
-  const validDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-  return validDays.includes(hash) ? hash : null;
+  const hash = window.location.hash;
+  const match = hash.match(/^#\/(\w+)$/);
+  return match ? match[1].toLowerCase() : null;
 };
 
-export const generateDayColor = (dayName: string): string => {
-  // Hash-based color generation
+// Deterministic color generation based on day name
+export const generateDayColor = (day: string): string => {
   let hash = 0;
-  for (let i = 0; i < dayName.length; i++) {
-    const char = dayName.charCodeAt(i);
+  for (let i = 0; i < day.length; i++) {
+    const char = day.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32-bit integer
+    hash = hash & hash;
   }
   
   const hue = Math.abs(hash) % 360;
-  return `hsl(${hue}, 86%, 56%)`;
+  return `hsl(${hue}, 70%, 55%)`;
 };
 
 export const formatTime = (seconds: number): string => {

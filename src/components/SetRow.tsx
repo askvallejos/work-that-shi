@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Check, Trash2 } from 'lucide-react';
 import { Checkbox } from './ui/checkbox';
 import { Button } from './ui/button';
-import { triggerHapticFeedback } from '../utils/sound';
+import { Trash2 } from 'lucide-react';
 
 import { WorkoutSet } from '../types/workout';
 
@@ -18,16 +17,14 @@ export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: Set
   const [isSkipping, setIsSkipping] = useState(false);
 
   const handleSwipeStart = (e: React.TouchEvent) => {
-    const touch = e.touches[0];
-    const startX = touch.clientX;
+    const startX = e.touches[0].clientX;
     
-    const handleSwipeMove = (moveEvent: TouchEvent) => {
-      const currentX = moveEvent.touches[0].clientX;
+    const handleSwipeMove = (e: TouchEvent) => {
+      const currentX = e.touches[0].clientX;
       const diffX = startX - currentX;
       
-      if (diffX > 100) { // Swiped left more than 100px
+      if (diffX > 100) {
         setIsSkipping(true);
-        triggerHapticFeedback();
         document.removeEventListener('touchmove', handleSwipeMove);
         document.removeEventListener('touchend', handleSwipeEnd);
       }
@@ -42,15 +39,12 @@ export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: Set
     document.addEventListener('touchend', handleSwipeEnd);
   };
 
-  const formatWeight = (weight: number) => {
-    if (exerciseName.toLowerCase().includes('pull-up') && weight > 0) {
-      return `+${weight} lbs`;
-    }
-    return weight > 0 ? `${weight} lbs` : 'Bodyweight';
+  const formatReps = (from: number, to: number) => {
+    return from === to ? `${from}` : `${from}-${to}`;
   };
 
-  const formatReps = (repsFrom: number, repsTo: number) => {
-    return repsFrom === repsTo ? repsFrom.toString() : `${repsFrom}-${repsTo}`;
+  const formatWeight = (weight: number) => {
+    return `${weight}kg`;
   };
 
   return (

@@ -28,7 +28,6 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
 
   const dayColor = generateDayColor(day);
 
-  // Load progress from localStorage
   useEffect(() => {
     const saved = localStorage.getItem(`workout-progress-${day}`);
     if (saved) {
@@ -42,7 +41,6 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     }
   }, [day]);
 
-  // Save progress to localStorage
   useEffect(() => {
     const data = {
       completedSets: Array.from(completedSets),
@@ -51,17 +49,14 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     localStorage.setItem(`workout-progress-${day}`, JSON.stringify(data));
   }, [completedSets, openExercises, day]);
 
-  // Request notification permission and initialize audio
   useEffect(() => {
     if ('Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission();
     }
     
-    // Initialize audio on first user interaction
     const initializeAudioOnInteraction = async () => {
       const success = await initializeAudio();
       setAudioInitialized(success);
-      // Remove listeners after first initialization
       document.removeEventListener('click', initializeAudioOnInteraction);
       document.removeEventListener('touchstart', initializeAudioOnInteraction);
     };
@@ -79,15 +74,15 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   const completedCount = completedSets.size;
   const progress = (completedCount / totalSets) * 100;
 
+  // Create deterministic keys from exercise names to avoid conflicts
   const createSetKey = (exerciseName: string, setNumber: number) => {
-    // Create a hash from exercise name to avoid naming conflicts
     let hash = 0;
     for (let i = 0; i < exerciseName.length; i++) {
       const char = exerciseName.charCodeAt(i);
       hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32-bit integer
+      hash = hash & hash;
     }
-    return Math.abs(hash) * 1000 + setNumber; // Ensure unique keys
+    return Math.abs(hash) * 1000 + setNumber;
   };
 
   const handleSetToggle = (exerciseName: string, setNumber: number) => {
@@ -99,13 +94,12 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     } else {
       newCompletedSets.add(setKey);
       
-      // Find the exercise and start rest timer
       const exercise = workout.exercises.find(ex => ex.exercise === exerciseName);
       if (exercise) {
         startTimer(exercise.rest_between_sets);
       }
       
-      // Auto-scroll to next unfinished set
+      // Auto-scroll to next unfinished set for better UX
       setTimeout(() => {
         const nextUnfinishedSet = findNextUnfinishedSet(newCompletedSets);
         if (nextUnfinishedSet) {
@@ -175,7 +169,6 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
         />
       )}
       
-      {/* Sticky Header */}
       <div 
         className={`sticky top-0 z-40 p-4 border-b border-border backdrop-blur-sm bg-background/80 transition-all duration-300 ${
           timer.isActive ? 'mt-24' : ''
@@ -195,7 +188,6 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
           </div>
           
           <div className="flex items-center gap-2">
-            {/* Test Sound Button */}
             <Button
               variant="ghost"
               size="sm"
@@ -210,36 +202,35 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
               )}
             </Button>
             
-            {/* Progress Ring */}
-            <div className="relative w-12 h-12">
-              <svg className="w-12 h-12 transform -rotate-90">
+            <div className="relative">
+              <svg className="w-8 h-8 transform -rotate-90">
                 <circle
-                  cx="24"
-                  cy="24"
-                  r="20"
-                  stroke="hsl(var(--muted))"
-                  strokeWidth="3"
+                  cx="16"
+                  cy="16"
+                  r="14"
                   fill="none"
+                  stroke="hsl(var(--muted))"
+                  strokeWidth="2"
                 />
                 <circle
-                  cx="24"
-                  cy="24"
-                  r="20"
-                  stroke={dayColor}
-                  strokeWidth="3"
+                  cx="16"
+                  cy="16"
+                  r="14"
                   fill="none"
+                  stroke={dayColor}
+                  strokeWidth="2"
+                  strokeDasharray={`${88 * (progress / 100)} 88`}
                   strokeLinecap="round"
-                  strokeDasharray={`${2 * Math.PI * 20}`}
-                  strokeDashoffset={`${2 * Math.PI * 20 * (1 - progress / 100)}`}
                   className="transition-all duration-500"
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-xs font-semibold">{Math.round(progress)}%</span>
+                <span className="text-xs font-medium">
+                  {Math.round(progress)}%
+                </span>
               </div>
             </div>
-
-            {/* Dropdown Menu */}
+            
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
@@ -247,7 +238,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={resetDay}>
+                <DropdownMenuItem onClick={resetDay} className="text-destructive">
                   <RotateCcw className="h-4 w-4 mr-2" />
                   Reset Day
                 </DropdownMenuItem>
@@ -257,7 +248,6 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
         </div>
       </div>
 
-      {/* Exercise Cards */}
       <div className="space-y-4 p-4">
         {workout.exercises.map((exercise) => (
           <ExerciseCard
