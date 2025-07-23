@@ -9,14 +9,7 @@ export const RestDay = ({ day }: RestDayProps) => {
   const dayColor = generateDayColor(day);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6 p-8">
-      <div 
-        className="p-4 rounded-full"
-        style={{ backgroundColor: `${dayColor}20` }}
-      >
-        <Coffee className="h-12 w-12" style={{ color: dayColor }} />
-      </div>
-      
+    <div className="flex flex-col items-center justify-center text-center space-y-6 p-8">
       <div>
         <h1 className="text-3xl font-bold capitalize mb-2">{day}</h1>
         <p className="text-xl text-muted-foreground">Rest Day</p>

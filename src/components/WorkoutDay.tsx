@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { MoreVertical, RotateCcw, Calendar, Volume2, VolumeX } from 'lucide-react';
+import { MoreVertical, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 import { ExerciseCard } from './ExerciseCard';
 import { TimerBanner } from './TimerBanner';
 import { useTimer } from '../hooks/useTimer';
 import { generateDayColor } from '../utils/dateHelpers';
-import { playAlarmSound, initializeAudio, testAudio } from '../utils/sound';
+import { initializeAudio, testAudio } from '../utils/sound';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -134,13 +134,11 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   };
 
   const handleExerciseToggle = (exerciseName: string, isOpen: boolean) => {
-    const newOpenExercises = new globalThis.Set(openExercises);
     if (isOpen) {
-      newOpenExercises.add(exerciseName);
+      setOpenExercises(new globalThis.Set([exerciseName]));
     } else {
-      newOpenExercises.delete(exerciseName);
+      setOpenExercises(new globalThis.Set());
     }
-    setOpenExercises(newOpenExercises);
   };
 
   const resetDay = () => {
@@ -177,10 +175,6 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Calendar 
-              className="h-6 w-6" 
-              style={{ color: dayColor }}
-            />
             <div>
               <h1 className="text-xl font-bold capitalize">{day}</h1>
               <p className="text-sm text-muted-foreground">{workout.name}</p>
