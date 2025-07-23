@@ -8,6 +8,7 @@ import { RestDay } from "./components/RestDay";
 import { DaySelector } from "./components/DaySelector";
 import { getCurrentDay, getDayFromHash } from "./utils/dateHelpers";
 import { WorkoutPlan } from "./types/workout";
+
 import workoutData from "./data/workout.json";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,8 @@ const App = () => {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [isManualSelection]);
+
+
 
   const workoutPlan = workoutData as WorkoutPlan;
   const availableDays = Object.keys(workoutPlan.workout_plan);

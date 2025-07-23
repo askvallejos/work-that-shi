@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { MoreVertical, RotateCcw, Calendar } from 'lucide-react';
+import { MoreVertical, RotateCcw, Calendar, Volume2 } from 'lucide-react';
 import { ExerciseCard } from './ExerciseCard';
 import { TimerBanner } from './TimerBanner';
 import { useTimer } from '../hooks/useTimer';
 import { generateDayColor } from '../utils/dateHelpers';
+import { playAlarmSound } from '../utils/sound';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -137,6 +138,10 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     localStorage.removeItem(`workout-progress-${day}`);
   };
 
+  const testSound = () => {
+    playAlarmSound();
+  };
+
   return (
     <div className="min-h-screen bg-background pb-20">
       {timer.isActive && (
@@ -168,6 +173,17 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
           </div>
           
           <div className="flex items-center gap-2">
+            {/* Test Sound Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={testSound}
+              className="h-8 w-8 p-0"
+              title="Test timer sound"
+            >
+              <Volume2 className="h-4 w-4" />
+            </Button>
+            
             {/* Progress Ring */}
             <div className="relative w-12 h-12">
               <svg className="w-12 h-12 transform -rotate-90">
@@ -196,7 +212,8 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
                 <span className="text-xs font-semibold">{Math.round(progress)}%</span>
               </div>
             </div>
-            
+
+            {/* Dropdown Menu */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
@@ -206,35 +223,26 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={resetDay}>
                   <RotateCcw className="h-4 w-4 mr-2" />
-                  Reset
+                  Reset Day
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </div>
-        
-        <div className="mt-3 text-sm text-muted-foreground">
-          {completedCount} / {totalSets} sets completed
-        </div>
       </div>
 
-      {/* Exercises */}
-      <div className="p-4 space-y-4 animate-fade-in">
-        {workout.exercises.map((exercise, index) => (
-          <div
+      {/* Exercise Cards */}
+      <div className="space-y-4 p-4">
+        {workout.exercises.map((exercise) => (
+          <ExerciseCard
             key={exercise.exercise}
-            style={{ animationDelay: `${index * 0.1}s` }}
-            className="animate-fade-in"
-          >
-            <ExerciseCard
-              exercise={exercise}
-              completedSets={completedSets}
-              onSetToggle={handleSetToggle}
-              onSetSkip={handleSetSkip}
-              isOpen={openExercises.has(exercise.exercise)}
-              onOpenChange={(open) => handleExerciseToggle(exercise.exercise, open)}
-            />
-          </div>
+            exercise={exercise}
+            completedSets={completedSets}
+            onSetToggle={handleSetToggle}
+            onSetSkip={handleSetSkip}
+            isOpen={openExercises.has(exercise.exercise)}
+            onOpenChange={(isOpen) => handleExerciseToggle(exercise.exercise, isOpen)}
+          />
         ))}
       </div>
     </div>
