@@ -48,8 +48,15 @@ export const useTimer = () => {
       intervalRef.current = setInterval(() => {
         setTimer(prev => {
           if (prev.timeLeft <= 1) {
-            // Timer finished
-            playAlarmSound();
+            // Timer finished - trigger all notifications
+            (async () => {
+              try {
+                await playAlarmSound();
+              } catch (error) {
+                console.warn('Failed to play timer sound:', error);
+              }
+            })();
+            
             triggerHapticFeedback();
             
             // Show notification

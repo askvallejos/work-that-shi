@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { MoreVertical, RotateCcw, Calendar, Volume2 } from 'lucide-react';
+import { MoreVertical, RotateCcw, Calendar, Volume2, VolumeX } from 'lucide-react';
 import { ExerciseCard } from './ExerciseCard';
 import { TimerBanner } from './TimerBanner';
 import { useTimer } from '../hooks/useTimer';
 import { generateDayColor } from '../utils/dateHelpers';
-import { playAlarmSound } from '../utils/sound';
+import { playAlarmSound, initializeAudio, testAudio } from '../utils/sound';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -23,6 +23,7 @@ interface WorkoutDayProps {
 export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   const [completedSets, setCompletedSets] = useState<globalThis.Set<number>>(new globalThis.Set());
   const [openExercises, setOpenExercises] = useState<globalThis.Set<string>>(new globalThis.Set([workout.exercises[0]?.exercise]));
+  const [audioInitialized, setAudioInitialized] = useState<boolean>(false);
   const { timer, startTimer, stopTimer, adjustTimer } = useTimer();
 
   const dayColor = generateDayColor(day);
@@ -50,11 +51,28 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     localStorage.setItem(`workout-progress-${day}`, JSON.stringify(data));
   }, [completedSets, openExercises, day]);
 
-  // Request notification permission
+  // Request notification permission and initialize audio
   useEffect(() => {
     if ('Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission();
     }
+    
+    // Initialize audio on first user interaction
+    const initializeAudioOnInteraction = async () => {
+      const success = await initializeAudio();
+      setAudioInitialized(success);
+      // Remove listeners after first initialization
+      document.removeEventListener('click', initializeAudioOnInteraction);
+      document.removeEventListener('touchstart', initializeAudioOnInteraction);
+    };
+
+    document.addEventListener('click', initializeAudioOnInteraction);
+    document.addEventListener('touchstart', initializeAudioOnInteraction);
+
+    return () => {
+      document.removeEventListener('click', initializeAudioOnInteraction);
+      document.removeEventListener('touchstart', initializeAudioOnInteraction);
+    };
   }, []);
 
   const totalSets = workout.exercises.reduce((sum, exercise) => sum + exercise.sets.length, 0);
@@ -138,8 +156,12 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     localStorage.removeItem(`workout-progress-${day}`);
   };
 
-  const testSound = () => {
-    playAlarmSound();
+  const testSound = async () => {
+    const success = await testAudio();
+    setAudioInitialized(success);
+    if (!success) {
+      console.warn('Sound test failed - audio may not work when timer ends');
+    }
   };
 
   return (
@@ -179,9 +201,13 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
               size="sm"
               onClick={testSound}
               className="h-8 w-8 p-0"
-              title="Test timer sound"
+              title={audioInitialized ? "Test timer sound" : "Initialize and test sound"}
             >
-              <Volume2 className="h-4 w-4" />
+              {audioInitialized ? (
+                <Volume2 className="h-4 w-4" />
+              ) : (
+                <VolumeX className="h-4 w-4 opacity-60" />
+              )}
             </Button>
             
             {/* Progress Ring */}
