@@ -99,7 +99,6 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
         startTimer(exercise.rest_between_sets);
       }
       
-      // Auto-scroll to next unfinished set for better UX
       setTimeout(() => {
         const nextUnfinishedSet = findNextUnfinishedSet(newCompletedSets);
         if (nextUnfinishedSet) {

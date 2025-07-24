@@ -1,4 +1,3 @@
-// Service Worker for Workout Tracker PWA
 const CACHE_NAME = 'workout-tracker-v1';
 const ASSETS_TO_CACHE = [
   '/',
@@ -39,7 +38,6 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Cache-first strategy with network fallback
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)

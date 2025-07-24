@@ -89,7 +89,6 @@ class AudioManager {
   }
 }
 
-// Singleton instance for audio management
 const audioManager = new AudioManager();
 
 export const playAlarmSound = async (): Promise<boolean> => {

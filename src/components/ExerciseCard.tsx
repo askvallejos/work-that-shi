@@ -21,7 +21,6 @@ export const ExerciseCard = ({
   isOpen,
   onOpenChange
 }: ExerciseCardProps) => {
-  // Generate deterministic keys to avoid exercise name conflicts
   const createSetKey = (exerciseName: string, setNumber: number) => {
     let hash = 0;
     for (let i = 0; i < exerciseName.length; i++) {

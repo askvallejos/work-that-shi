@@ -48,7 +48,6 @@ export const useTimer = () => {
       intervalRef.current = setInterval(() => {
         setTimer(prev => {
           if (prev.timeLeft <= 1) {
-            // Multi-modal notifications: sound, haptic, and system notification
             (async () => {
               try {
                 await playAlarmSound();
