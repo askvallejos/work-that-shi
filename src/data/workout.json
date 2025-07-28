@@ -97,7 +97,7 @@
       ]
     },
     "wednesday": {
-      "name": "Legs & Accessory",
+      "name": "Legs & Accessories",
       "exercises": [
         {
           "exercise": "Romanian Deadlift",
@@ -107,7 +107,7 @@
             { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 },
             { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 }
           ],
-          "rest_between_sets": 60
+          "rest_between_sets": 90
         },
         {
           "exercise": "Front Squats",
@@ -117,15 +117,15 @@
             { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 50 },
             { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 50 }
           ],
-          "rest_between_sets": 60
+          "rest_between_sets": 90
         },
         {
-          "exercise": "Face Pulls",
+          "exercise": "Hanging Leg Raises",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 }
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 }
           ],
           "rest_between_sets": 60
         },
@@ -246,6 +246,64 @@
           "rest_between_sets": 60
         }
       ]
+    },
+    "saturday": {
+      "name": "Legs & Accessories",
+      "exercises": [
+        {
+          "exercise": "Romanian Deadlift",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Front Squats",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 50 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 50 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 50 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 50 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Hanging Leg Raises",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Barbell Wrist Curls",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Reverse Curl",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 }
+          ],
+          "rest_between_sets": 60
+        }
+      ]
+    },
+    "sunday": {
+      "name": "Rest"
     }
   }
 }
