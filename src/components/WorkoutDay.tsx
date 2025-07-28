@@ -3,6 +3,7 @@ import { MoreVertical, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 import { ExerciseCard } from './ExerciseCard';
 import { TimerBanner } from './TimerBanner';
 import { useTimer } from '../hooks/useTimer';
+import { useWakeLock } from '../hooks/useWakeLock';
 import { generateDayColor } from '../utils/dateHelpers';
 import { initializeAudio, testAudio } from '../utils/sound';
 import { Button } from './ui/button';
@@ -25,6 +26,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   const [openExercises, setOpenExercises] = useState<globalThis.Set<string>>(new globalThis.Set([workout.exercises[0]?.exercise]));
   const [audioInitialized, setAudioInitialized] = useState<boolean>(false);
   const { timer, startTimer, stopTimer, adjustTimer } = useTimer();
+  const { requestWakeLock, releaseWakeLock } = useWakeLock();
 
   const dayColor = generateDayColor(day);
 
@@ -70,11 +72,32 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     };
   }, []);
 
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    const activateWakeLock = async () => {
+      timeoutId = setTimeout(async () => {
+        const success = await requestWakeLock();
+        if (success) {
+          console.log('Screen wake lock activated - your phone won\'t lock during this workout');
+        }
+      }, 1000);
+    };
+
+    activateWakeLock();
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      releaseWakeLock();
+    };
+  }, [requestWakeLock, releaseWakeLock]);
+
   const totalSets = workout.exercises.reduce((sum, exercise) => sum + exercise.sets.length, 0);
   const completedCount = completedSets.size;
   const progress = (completedCount / totalSets) * 100;
 
-  // Create deterministic keys from exercise names to avoid conflicts
   const createSetKey = (exerciseName: string, setNumber: number) => {
     let hash = 0;
     for (let i = 0; i < exerciseName.length; i++) {
@@ -181,20 +204,6 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
           </div>
           
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={testSound}
-              className="h-8 w-8 p-0"
-              title={audioInitialized ? "Test timer sound" : "Initialize and test sound"}
-            >
-              {audioInitialized ? (
-                <Volume2 className="h-4 w-4" />
-              ) : (
-                <VolumeX className="h-4 w-4 opacity-60" />
-              )}
-            </Button>
-            
             <div className="relative">
               <svg className="w-8 h-8 transform -rotate-90">
                 <circle
@@ -231,6 +240,14 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={testSound}>
+                  {audioInitialized ? (
+                    <Volume2 className="h-4 w-4 mr-2" />
+                  ) : (
+                    <VolumeX className="h-4 w-4 mr-2 opacity-60" />
+                  )}
+                  {audioInitialized ? 'Test Timer Sound' : 'Initialize Sound'}
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={resetDay} className="text-destructive">
                   <RotateCcw className="h-4 w-4 mr-2" />
                   Reset Day

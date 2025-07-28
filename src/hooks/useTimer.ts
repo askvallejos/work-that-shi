@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { playAlarmSound, triggerHapticFeedback } from '../utils/sound';
-import { useWakeLock } from './useWakeLock';
 
 interface TimerState {
   isActive: boolean;
@@ -16,7 +15,6 @@ export const useTimer = () => {
   });
   
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const { requestWakeLock, releaseWakeLock } = useWakeLock();
 
   const startTimer = (seconds: number) => {
     setTimer({
@@ -24,7 +22,6 @@ export const useTimer = () => {
       timeLeft: seconds,
       initialTime: seconds
     });
-    requestWakeLock();
   };
 
   const stopTimer = () => {
@@ -33,7 +30,6 @@ export const useTimer = () => {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-    releaseWakeLock();
   };
 
   const adjustTimer = (secondsToAdd: number) => {
@@ -73,9 +69,6 @@ export const useTimer = () => {
     } else if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
-      if (!timer.isActive) {
-        releaseWakeLock();
-      }
     }
 
     return () => {
@@ -83,7 +76,7 @@ export const useTimer = () => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [timer.isActive, timer.timeLeft, releaseWakeLock]);
+  }, [timer.isActive, timer.timeLeft]);
 
   return {
     timer,
