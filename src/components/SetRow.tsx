@@ -44,7 +44,7 @@ export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: Set
   };
 
   const formatWeight = (weight: number) => {
-    return `${weight}lb`;
+    return `${weight} lbs`;
   };
 
   return (
