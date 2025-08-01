@@ -61,7 +61,7 @@ export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: Set
           <Checkbox
             checked={isCompleted}
             onCheckedChange={() => onToggle(set.set)}
-            className="h-5 w-5"
+            className="h-8 w-8"
           />
         </div>
       </td>

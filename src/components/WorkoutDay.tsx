@@ -23,7 +23,7 @@ interface WorkoutDayProps {
 
 export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   const [completedSets, setCompletedSets] = useState<globalThis.Set<number>>(new globalThis.Set());
-  const [openExercises, setOpenExercises] = useState<globalThis.Set<string>>(new globalThis.Set([workout.exercises[0]?.exercise]));
+  const [openExercises, setOpenExercises] = useState<globalThis.Set<string>>(new globalThis.Set([workout.exercises?.[0]?.exercise]));
   const [audioInitialized, setAudioInitialized] = useState<boolean>(false);
   const { timer, startTimer, stopTimer, adjustTimer } = useTimer();
   const { requestWakeLock, releaseWakeLock } = useWakeLock();
@@ -94,7 +94,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     };
   }, [requestWakeLock, releaseWakeLock]);
 
-  const totalSets = workout.exercises.reduce((sum, exercise) => sum + exercise.sets.length, 0);
+  const totalSets = workout.exercises?.reduce((sum, exercise) => sum + exercise.sets.length, 0) || 0;
   const completedCount = completedSets.size;
   const progress = (completedCount / totalSets) * 100;
 
@@ -117,7 +117,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     } else {
       newCompletedSets.add(setKey);
       
-      const exercise = workout.exercises.find(ex => ex.exercise === exerciseName);
+              const exercise = workout.exercises?.find(ex => ex.exercise === exerciseName);
       if (exercise) {
         startTimer(exercise.rest_between_sets);
       }
@@ -137,6 +137,8 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   };
 
   const findNextUnfinishedSet = (completed: globalThis.Set<number>) => {
+    if (!workout.exercises) return null;
+    
     for (const exercise of workout.exercises) {
       for (const workoutSet of exercise.sets) {
         const setKey = createSetKey(exercise.exercise, workoutSet.set);
@@ -165,7 +167,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
 
   const resetDay = () => {
     setCompletedSets(new globalThis.Set());
-    setOpenExercises(new globalThis.Set([workout.exercises[0]?.exercise]));
+    setOpenExercises(new globalThis.Set([workout.exercises?.[0]?.exercise]));
     stopTimer();
     localStorage.removeItem(`workout-progress-${day}`);
   };
@@ -259,7 +261,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
       </div>
 
       <div className="space-y-4 p-4">
-        {workout.exercises.map((exercise) => (
+        {workout.exercises?.map((exercise) => (
           <ExerciseCard
             key={exercise.exercise}
             exercise={exercise}

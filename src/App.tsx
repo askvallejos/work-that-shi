@@ -57,7 +57,7 @@ const App = () => {
               onDayChange={handleDayChange}
               availableDays={availableDays}
             />
-            {workout ? (
+            {workout && workout.exercises ? (
               <WorkoutDay day={currentDay} workout={workout} />
             ) : (
               <RestDay day={currentDay} />
