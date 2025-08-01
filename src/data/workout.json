@@ -75,7 +75,7 @@
           "rest_between_sets": 90
         },
         {
-          "exercise": "Rear Delt Fly",
+          "exercise": "Side-Lying Rear Delt Raise",
           "sets": [
             { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
             { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
@@ -134,7 +134,7 @@
           "rest_between_sets": 60
         },
         {
-          "exercise": "Barbell Wrist Curl",
+          "exercise": "Wrist Curl",
           "sets": [
             { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
             { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
@@ -161,12 +161,12 @@
         {
           "exercise": "Reverse Grip Bench Press",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 10 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 15 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
-            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
-            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 }
+            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 10 },
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 },
+            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 },
+            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 }
           ],
           "rest_between_sets": 90
         },
@@ -240,7 +240,7 @@
           "rest_between_sets": 60
         },
         {
-          "exercise": "Barbell Drag Curl",
+          "exercise": "Drag Curl",
           "sets": [
             { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
             { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
@@ -289,7 +289,7 @@
           "rest_between_sets": 60
         },
         {
-          "exercise": "Barbell Wrist Curl",
+          "exercise": "Wrist Curl",
           "sets": [
             { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
             { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
