@@ -1,4 +1,3 @@
-// Audio management with proper browser autoplay policy handling
 class AudioManager {
   private audio: HTMLAudioElement | null = null;
   private isInitialized = false;

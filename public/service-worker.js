@@ -1,4 +1,4 @@
-const CACHE_NAME = 'workout-tracker-v1';
+const CACHE_NAME = 'work-that-shi';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -11,6 +11,9 @@ const ASSETS_TO_CACHE = [
   '/site.webmanifest',
   '/placeholder.svg'
 ];
+
+let backgroundTimer = null;
+let timerTimeout = null;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -73,3 +76,114 @@ self.addEventListener('fetch', (event) => {
       })
   );
 });
+
+self.addEventListener('message', (event) => {
+  const { type, endTime, initialTime } = event.data;
+  
+  switch (type) {
+    case 'TIMER_START':
+      startBackgroundTimer(endTime, initialTime);
+      break;
+    case 'TIMER_STOP':
+      stopBackgroundTimer();
+      break;
+  }
+});
+
+function startBackgroundTimer(endTime, initialTime) {
+  stopBackgroundTimer();
+  
+  backgroundTimer = {
+    endTime,
+    initialTime,
+    startTime: Date.now()
+  };
+  
+  const timeToComplete = endTime - Date.now();
+  
+  if (timeToComplete > 0) {
+    timerTimeout = setTimeout(() => {
+      showTimerNotification();
+      stopBackgroundTimer();
+    }, timeToComplete);
+    
+    console.log(`Background timer started, will complete in ${Math.ceil(timeToComplete / 1000)} seconds`);
+  }
+}
+
+function stopBackgroundTimer() {
+  if (timerTimeout) {
+    clearTimeout(timerTimeout);
+    timerTimeout = null;
+  }
+  backgroundTimer = null;
+}
+
+function showTimerNotification() {
+  self.registration.showNotification('Rest Timer Complete!', {
+    body: 'Time for your next set!',
+    icon: '/android-chrome-192x192.png',
+    badge: '/favicon-32x32.png',
+    tag: 'workout-timer',
+    requireInteraction: true,
+    actions: [
+      {
+        action: 'open',
+        title: 'Open Workout'
+      }
+    ],
+    data: {
+      url: '/',
+      type: 'timer-complete'
+    }
+  });
+}
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  
+  if (event.action === 'open' || !event.action) {
+    event.waitUntil(
+      clients.matchAll({ type: 'window' }).then((clients) => {
+        for (const client of clients) {
+          if (client.url.includes(self.location.origin) && 'focus' in client) {
+            return client.focus();
+          }
+        }
+        
+        if (clients.openWindow) {
+          return clients.openWindow('/');
+        }
+      })
+    );
+  }
+});
+
+self.addEventListener('activate', (event) => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    Promise.all([
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheWhitelist.indexOf(cacheName) === -1) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }),
+      checkExistingTimer()
+    ]).then(() => self.clients.claim())
+  );
+});
+
+async function checkExistingTimer() {
+  try {
+    const clients = await self.clients.matchAll();
+    clients.forEach(client => {
+      client.postMessage({ type: 'SERVICE_WORKER_READY' });
+    });
+  } catch (error) {
+    console.warn('Failed to check existing timer:', error);
+  }
+}

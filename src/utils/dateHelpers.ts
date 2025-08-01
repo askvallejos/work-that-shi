@@ -10,7 +10,6 @@ export const getDayFromHash = (): string | null => {
   return match ? match[1].toLowerCase() : null;
 };
 
-// Deterministic color generation based on day name
 export const generateDayColor = (day: string): string => {
   let hash = 0;
   for (let i = 0; i < day.length; i++) {
