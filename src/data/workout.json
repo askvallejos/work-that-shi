@@ -1,17 +1,17 @@
 {
   "workout_plan": {
     "monday": {
-      "name": "Push",
+      "name": "Push A",
       "exercises": [
         {
           "exercise": "Bench Press",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 10 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 15 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
-            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
-            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 }
+            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 10 },
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 },
+            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 },
+            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 }
           ],
           "rest_between_sets": 90
         },
@@ -30,10 +30,10 @@
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 5 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 10 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 },
-            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 },
-            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 }
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 },
+            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 },
+            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 }
           ],
           "rest_between_sets": 90
         },
@@ -50,22 +50,22 @@
       ]
     },
     "tuesday": {
-      "name": "Pull",
+      "name": "Pull A",
       "exercises": [
         {
-          "exercise": "Bent-over Row (Overhand)",
+          "exercise": "Meadows Row",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 20 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 40 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 70 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 70 },
-            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 70 },
-            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 70 }
+            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 10 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
+            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
+            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Pull-up",
+          "exercise": "Wide Grip Pull-up",
           "sets": [
             { "set": 1, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
             { "set": 2, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
@@ -100,7 +100,7 @@
       "name": "Legs & Accessories",
       "exercises": [
         {
-          "exercise": "Romanian Deadlift",
+          "exercise": "Zercher Squat",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 0 },
@@ -112,7 +112,7 @@
           "rest_between_sets": 90
         },
         {
-          "exercise": "Zercher Squat",
+          "exercise": "Romanian Deadlift",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 0 },
@@ -156,10 +156,10 @@
       ]
     },
     "thursday": {
-      "name": "Push",
+      "name": "Push B",
       "exercises": [
         {
-          "exercise": "Incline Bench Press",
+          "exercise": "Reverse Grip Bench Press",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 10 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 15 },
@@ -181,18 +181,6 @@
           "rest_between_sets": 60
         },
         {
-          "exercise": "Arnold Press",
-          "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 5 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 10 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 },
-            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 },
-            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 20 }
-          ],
-          "rest_between_sets": 90
-        },
-        {
           "exercise": "Skull Crusher",
           "sets": [
             { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 },
@@ -201,21 +189,33 @@
             { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 }
           ],
           "rest_between_sets": 60
+        },
+        {
+          "exercise": "Arnold Press",
+          "sets": [
+            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 10 },
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 },
+            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 },
+            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 }
+          ],
+          "rest_between_sets": 90
         }
       ]
     },
     "friday": {
-      "name": "Pull",
+      "name": "Pull B",
       "exercises": [
         {
-          "exercise": "Barbell Row (Underhand)",
+          "exercise": "Single-Arm Row",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 20 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 40 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 70 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 70 },
-            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 70 },
-            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 70 }
+            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 10 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 },
+            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 },
+            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 }
           ],
           "rest_between_sets": 90
         },
@@ -255,7 +255,7 @@
       "name": "Legs & Accessories",
       "exercises": [
         {
-          "exercise": "Romanian Deadlift",
+          "exercise": "Zercher Squat",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 0 },
@@ -267,7 +267,7 @@
           "rest_between_sets": 90
         },
         {
-          "exercise": "Zercher Squat",
+          "exercise": "Romanian Deadlift",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 0 },
