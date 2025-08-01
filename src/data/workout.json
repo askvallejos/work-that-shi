@@ -1,6 +1,53 @@
 {
   "workout_plan": {
     "monday": {
+      "name": "Pull A",
+      "exercises": [
+        {
+          "exercise": "Meadows Row",
+          "sets": [
+            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 10 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
+            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
+            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Wide Grip Pull-up",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
+            { "set": 2, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Side-Lying Rear Delt Raise",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Seated Incline Curl",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 }
+          ],
+          "rest_between_sets": 60
+        }
+      ]
+    },
+    "tuesday": {
       "name": "Push A",
       "exercises": [
         {
@@ -39,53 +86,6 @@
         },
         {
           "exercise": "Overhead Tricep Extension",
-          "sets": [
-            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 },
-            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 },
-            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 },
-            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 }
-          ],
-          "rest_between_sets": 60
-        }
-      ]
-    },
-    "tuesday": {
-      "name": "Pull A",
-      "exercises": [
-        {
-          "exercise": "Meadows Row",
-          "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 10 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 20 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
-            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 },
-            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 30 }
-          ],
-          "rest_between_sets": 90
-        },
-        {
-          "exercise": "Wide Grip Pull-up",
-          "sets": [
-            { "set": 1, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 }
-          ],
-          "rest_between_sets": 90
-        },
-        {
-          "exercise": "Side-Lying Rear Delt Raise",
-          "sets": [
-            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
-            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
-            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
-            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 }
-          ],
-          "rest_between_sets": 60
-        },
-        {
-          "exercise": "Seated Incline Curl",
           "sets": [
             { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 },
             { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 10 },
@@ -156,6 +156,53 @@
       ]
     },
     "thursday": {
+      "name": "Pull B",
+      "exercises": [
+        {
+          "exercise": "Single-Arm Row",
+          "sets": [
+            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 10 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 },
+            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 },
+            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Neutral Grip Pull-up",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
+            { "set": 2, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
+            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
+            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 }
+          ],
+          "rest_between_sets": 90
+        },
+        {
+          "exercise": "Rear Delt Skier",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Drag Curl",
+          "sets": [
+            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 }
+          ],
+          "rest_between_sets": 60
+        }
+      ]
+    },
+    "friday": {
       "name": "Push B",
       "exercises": [
         {
@@ -201,53 +248,6 @@
             { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 15 }
           ],
           "rest_between_sets": 90
-        }
-      ]
-    },
-    "friday": {
-      "name": "Pull B",
-      "exercises": [
-        {
-          "exercise": "Single-Arm Row",
-          "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 10 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 20 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 },
-            { "set": 5, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 },
-            { "set": 6, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 40 }
-          ],
-          "rest_between_sets": 90
-        },
-        {
-          "exercise": "Neutral Grip Pull-up",
-          "sets": [
-            { "set": 1, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 10, "weight": 0 }
-          ],
-          "rest_between_sets": 90
-        },
-        {
-          "exercise": "Rear Delt Skier",
-          "sets": [
-            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
-            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
-            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 },
-            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 5 }
-          ],
-          "rest_between_sets": 60
-        },
-        {
-          "exercise": "Drag Curl",
-          "sets": [
-            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
-            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
-            { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 },
-            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 20 }
-          ],
-          "rest_between_sets": 60
         }
       ]
     },
