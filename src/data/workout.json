@@ -85,10 +85,12 @@
         {
           "exercise": "Arnold Press",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
-            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
+            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 10 },
             { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
-            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 }
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
+            { "set": 5, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
+            { "set": 6, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 }
           ],
           "rest_between_sets": 90
         }
@@ -234,12 +236,14 @@
           "rest_between_sets": 90
         },
         {
-          "exercise": "Incline Dumbbell Fly",
+          "exercise": "Overhead Press",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
-            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
+            { "set": 1, "type": "warm_up", "reps_from": 10, "reps_to": 15, "weight": 5 },
+            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 10, "weight": 10 },
             { "set": 3, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
-            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 }
+            { "set": 4, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
+            { "set": 5, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 },
+            { "set": 6, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 15 }
           ],
           "rest_between_sets": 90
         }
