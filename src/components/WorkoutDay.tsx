@@ -23,7 +23,13 @@ interface WorkoutDayProps {
 
 export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   const [completedSets, setCompletedSets] = useState<globalThis.Set<number>>(new globalThis.Set());
-  const [openExercises, setOpenExercises] = useState<globalThis.Set<string>>(new globalThis.Set([workout.exercises?.[0]?.exercise]));
+  const exercisesArray = Array.isArray((workout as any)?.exercises)
+    ? ((workout as any).exercises as any[])
+    : [];
+  const [firstExercise] = exercisesArray;
+  const [openExercises, setOpenExercises] = useState<globalThis.Set<string>>(
+    new globalThis.Set()
+  );
   const [audioInitialized, setAudioInitialized] = useState<boolean>(false);
   const { timer, startTimer, stopTimer, adjustTimer } = useTimer();
   const { requestWakeLock, releaseWakeLock } = useWakeLock();
@@ -40,6 +46,8 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
       } catch (error) {
         console.warn('Failed to load progress:', error);
       }
+    } else {
+      setOpenExercises(new globalThis.Set());
     }
   }, [day]);
 
@@ -94,7 +102,9 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     };
   }, [requestWakeLock, releaseWakeLock]);
 
-  const totalSets = workout.exercises?.reduce((sum, exercise) => sum + exercise.sets.length, 0) || 0;
+  const totalSets = (Array.isArray((workout as any).exercises)
+    ? (workout as any).exercises.reduce((sum: number, exercise: any) => sum + exercise.sets.length, 0)
+    : 0) || 0;
   const completedCount = completedSets.size;
   const progress = (completedCount / totalSets) * 100;
 
@@ -116,8 +126,9 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
       newCompletedSets.delete(setKey);
     } else {
       newCompletedSets.add(setKey);
-      
-              const exercise = workout.exercises?.find(ex => ex.exercise === exerciseName);
+      const exercise = Array.isArray((workout as any).exercises)
+        ? (workout as any).exercises.find((ex: any) => ex.exercise === exerciseName)
+        : undefined;
       if (exercise) {
         startTimer(exercise.rest_between_sets);
       }
@@ -137,9 +148,9 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   };
 
   const findNextUnfinishedSet = (completed: globalThis.Set<number>) => {
-    if (!workout.exercises) return null;
+    if (!Array.isArray((workout as any).exercises)) return null;
     
-    for (const exercise of workout.exercises) {
+    for (const exercise of (workout as any).exercises) {
       for (const workoutSet of exercise.sets) {
         const setKey = createSetKey(exercise.exercise, workoutSet.set);
         if (!completed.has(setKey)) {
@@ -167,7 +178,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
 
   const resetDay = () => {
     setCompletedSets(new globalThis.Set());
-    setOpenExercises(new globalThis.Set([workout.exercises?.[0]?.exercise]));
+    setOpenExercises(new globalThis.Set());
     stopTimer();
     localStorage.removeItem(`workout-progress-${day}`);
   };
@@ -180,8 +191,12 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     }
   };
 
+  if (!Array.isArray((workout as any).exercises) || (workout as any).exercises.length === 0) {
+    return null;
+  }
+
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="h-screen bg-background pb-20 flex flex-col overflow-hidden">
       {timer.isActive && (
         <TimerBanner
           timeLeft={timer.timeLeft}
@@ -194,7 +209,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
       <div 
         className={`sticky top-0 z-40 p-4 border-b border-border backdrop-blur-sm bg-background/80 transition-all duration-300 ${
           timer.isActive ? 'mt-24' : ''
-        }`}
+        } flex-none`}
         style={{ '--day-color': dayColor } as React.CSSProperties}
       >
         <div className="flex items-center justify-between">
@@ -259,8 +274,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
           </div>
         </div>
       </div>
-
-      <div className="space-y-4 p-4">
+      <div className="space-y-4 p-4 flex-1 overflow-y-auto">
         {workout.exercises?.map((exercise) => (
           <ExerciseCard
             key={exercise.exercise}

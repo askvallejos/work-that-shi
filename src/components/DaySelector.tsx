@@ -29,12 +29,6 @@ export const DaySelector = ({ selectedDay, onDayChange, availableDays }: DaySele
               {dayNames[day]}
             </SelectItem>
           ))}
-          {!availableDays.includes("saturday") && (
-            <SelectItem value="saturday">Saturday (Rest)</SelectItem>
-          )}
-          {!availableDays.includes("sunday") && (
-            <SelectItem value="sunday">Sunday (Rest)</SelectItem>
-          )}
         </SelectContent>
       </Select>
     </div>
