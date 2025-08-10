@@ -1,13 +1,10 @@
-import { Calendar, Coffee } from "lucide-react";
-import { generateDayColor } from "../utils/dateHelpers";
+// Removed unused imports for improved clarity
 
 interface RestDayProps {
   day: string;
 }
 
 export const RestDay = ({ day }: RestDayProps) => {
-  const dayColor = generateDayColor(day);
-
   return (
     <div className="flex flex-col items-center justify-center text-center space-y-6 p-8">
       <div>

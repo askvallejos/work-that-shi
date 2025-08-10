@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { SetRow } from './SetRow';
@@ -6,12 +7,22 @@ import { Exercise } from '../types/workout';
 
 interface ExerciseCardProps {
   exercise: Exercise;
-  completedSets: globalThis.Set<number>;
+  completedSets: Set<number>;
   onSetToggle: (exerciseName: string, setNumber: number) => void;
   onSetSkip: (exerciseName: string, setNumber: number) => void;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
 }
+
+const buildSetKey = (exerciseName: string, setNumber: number): number => {
+  let hash = 0;
+  for (let i = 0; i < exerciseName.length; i++) {
+    const char = exerciseName.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash) * 1000 + setNumber;
+};
 
 export const ExerciseCard = ({
   exercise,
@@ -21,22 +32,20 @@ export const ExerciseCard = ({
   isOpen,
   onOpenChange
 }: ExerciseCardProps) => {
-  const createSetKey = (exerciseName: string, setNumber: number) => {
-    let hash = 0;
-    for (let i = 0; i < exerciseName.length; i++) {
-      const char = exerciseName.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    return Math.abs(hash) * 1000 + setNumber;
-  };
-
-  const completedCount = exercise.sets.filter(workoutSet => 
-    completedSets.has(createSetKey(exercise.exercise, workoutSet.set))
-  ).length;
-  
   const totalSets = exercise.sets.length;
-  const progress = (completedCount / totalSets) * 100;
+
+  const completedCount = useMemo(
+    () =>
+      exercise.sets.filter((workoutSet) =>
+        completedSets.has(buildSetKey(exercise.exercise, workoutSet.set))
+      ).length,
+    [exercise.exercise, exercise.sets, completedSets]
+  );
+
+  const progress = useMemo(
+    () => (totalSets > 0 ? (completedCount / totalSets) * 100 : 0),
+    [completedCount, totalSets]
+  );
 
   return (
     <Collapsible open={isOpen} onOpenChange={onOpenChange}>
@@ -82,7 +91,7 @@ export const ExerciseCard = ({
                     key={workoutSet.set}
                     set={workoutSet}
                     exerciseName={exercise.exercise}
-                    isCompleted={completedSets.has(createSetKey(exercise.exercise, workoutSet.set))}
+                    isCompleted={completedSets.has(buildSetKey(exercise.exercise, workoutSet.set))}
                     onToggle={(setNumber) => onSetToggle(exercise.exercise, setNumber)}
                     onSkip={(setNumber) => onSetSkip(exercise.exercise, setNumber)}
                   />

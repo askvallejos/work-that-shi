@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Checkbox } from './ui/checkbox';
 import { Button } from './ui/button';
 import { Trash2 } from 'lucide-react';
@@ -16,36 +16,31 @@ interface SetRowProps {
 export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: SetRowProps) => {
   const [isSkipping, setIsSkipping] = useState(false);
 
-  const handleSwipeStart = (e: React.TouchEvent) => {
+  const handleSwipeStart = useCallback((e: React.TouchEvent) => {
     const startX = e.touches[0].clientX;
-    
-    const handleSwipeMove = (e: TouchEvent) => {
-      const currentX = e.touches[0].clientX;
+
+    const handleSwipeEnd = () => {
+      document.removeEventListener('touchmove', handleSwipeMove as any);
+      document.removeEventListener('touchend', handleSwipeEnd);
+    };
+
+    const handleSwipeMove = (event: TouchEvent) => {
+      const currentX = event.touches[0].clientX;
       const diffX = startX - currentX;
-      
+
       if (diffX > 100) {
         setIsSkipping(true);
         document.removeEventListener('touchmove', handleSwipeMove);
         document.removeEventListener('touchend', handleSwipeEnd);
       }
     };
-    
-    const handleSwipeEnd = () => {
-      document.removeEventListener('touchmove', handleSwipeMove);
-      document.removeEventListener('touchend', handleSwipeEnd);
-    };
-    
+
     document.addEventListener('touchmove', handleSwipeMove);
     document.addEventListener('touchend', handleSwipeEnd);
-  };
+  }, []);
 
-  const formatReps = (from: number, to: number) => {
-    return from === to ? `${from}` : `${from}-${to}`;
-  };
-
-  const formatWeight = (weight: number) => {
-    return `${weight} lbs`;
-  };
+  const formatReps = (from: number, to: number) => (from === to ? `${from}` : `${from}-${to}`);
+  const formatWeight = (weight: number) => `${weight} lbs`;
 
   return (
     <tr
@@ -88,10 +83,10 @@ export const SetRow = ({ set, exerciseName, isCompleted, onToggle, onSkip }: Set
             <Button
               variant="destructive"
               size="sm"
-              onClick={() => {
-                onSkip(set.set);
-                setIsSkipping(false);
-              }}
+            onClick={() => {
+              onSkip(set.set);
+              setIsSkipping(false);
+            }}
               className="animate-fade-in"
             >
               <Trash2 className="h-4 w-4 mr-1" />

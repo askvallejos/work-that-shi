@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { MoreVertical, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 import { ExerciseCard } from './ExerciseCard';
 import { TimerBanner } from './TimerBanner';
@@ -21,49 +21,61 @@ interface WorkoutDayProps {
   workout: WorkoutData;
 }
 
+const buildSetKey = (exerciseName: string, setNumber: number): number | null => {
+  if (!exerciseName || typeof setNumber !== 'number') return null;
+
+  let hash = 0;
+  for (let i = 0; i < exerciseName.length; i++) {
+    const char = exerciseName.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash) * 1000 + setNumber;
+};
+
 export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
-  const [completedSets, setCompletedSets] = useState<globalThis.Set<number>>(new globalThis.Set());
-  const exercisesArray = Array.isArray((workout as any)?.exercises)
-    ? ((workout as any).exercises as any[])
-    : [];
-  const [firstExercise] = exercisesArray;
-  const [openExercises, setOpenExercises] = useState<globalThis.Set<string>>(
-    new globalThis.Set()
-  );
+  const [completedSets, setCompletedSets] = useState<Set<number>>(new Set());
+  const [openExercises, setOpenExercises] = useState<Set<string>>(new Set());
   const [audioInitialized, setAudioInitialized] = useState<boolean>(false);
+
   const { timer, startTimer, stopTimer, adjustTimer } = useTimer();
   const { requestWakeLock, releaseWakeLock } = useWakeLock();
 
   const dayColor = generateDayColor(day);
 
+  const exercises = useMemo(() => workout.exercises ?? [], [workout.exercises]);
+
   useEffect(() => {
     const saved = localStorage.getItem(`workout-progress-${day}`);
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        setCompletedSets(new globalThis.Set(data.completedSets));
-        setOpenExercises(new globalThis.Set(data.openExercises));
-      } catch (error) {
-        console.warn('Failed to load progress:', error);
-      }
-    } else {
-      setOpenExercises(new globalThis.Set());
+    if (!saved) {
+      setOpenExercises(new Set());
+      return;
+    }
+
+    try {
+      const data = JSON.parse(saved) as { completedSets?: number[]; openExercises?: string[] };
+      setCompletedSets(new Set(data.completedSets ?? []));
+      setOpenExercises(new Set(data.openExercises ?? []));
+    } catch (error) {
+      console.warn('Failed to load progress:', error);
+      setCompletedSets(new Set());
+      setOpenExercises(new Set());
     }
   }, [day]);
 
   useEffect(() => {
-    const data = {
+    const serialized = {
       completedSets: Array.from(completedSets),
-      openExercises: Array.from(openExercises)
+      openExercises: Array.from(openExercises),
     };
-    localStorage.setItem(`workout-progress-${day}`, JSON.stringify(data));
+    localStorage.setItem(`workout-progress-${day}`, JSON.stringify(serialized));
   }, [completedSets, openExercises, day]);
 
   useEffect(() => {
     if ('Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission();
     }
-    
+
     const initializeAudioOnInteraction = async () => {
       const success = await initializeAudio();
       setAudioInitialized(success);
@@ -81,13 +93,13 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   }, []);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
     const activateWakeLock = async () => {
       timeoutId = setTimeout(async () => {
         const success = await requestWakeLock();
         if (success) {
-          console.log('Screen wake lock activated - your phone won\'t lock during this workout');
+          console.log("Screen wake lock activated - your phone won't lock during this workout");
         }
       }, 1000);
     };
@@ -95,103 +107,106 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
     activateWakeLock();
 
     return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
+      if (timeoutId) clearTimeout(timeoutId);
       releaseWakeLock();
     };
   }, [requestWakeLock, releaseWakeLock]);
 
-  const totalSets = (Array.isArray((workout as any).exercises)
-    ? (workout as any).exercises.reduce((sum: number, exercise: any) => sum + exercise.sets.length, 0)
-    : 0) || 0;
+  const totalSets = useMemo(() => {
+    if (!Array.isArray(exercises)) return 0;
+    return exercises.reduce((sum, exercise) => sum + exercise.sets.length, 0);
+  }, [exercises]);
+
   const completedCount = completedSets.size;
-  const progress = (completedCount / totalSets) * 100;
+  const progress = useMemo(() => {
+    if (totalSets === 0) return 0;
+    return (completedCount / totalSets) * 100;
+  }, [completedCount, totalSets]);
 
-  const createSetKey = (exerciseName: string, setNumber: number) => {
-    let hash = 0;
-    for (let i = 0; i < exerciseName.length; i++) {
-      const char = exerciseName.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    return Math.abs(hash) * 1000 + setNumber;
-  };
+  const findNextUnfinishedSet = useCallback(
+    (completed: Set<number>) => {
+      if (!Array.isArray(exercises)) return null;
 
-  const handleSetToggle = (exerciseName: string, setNumber: number) => {
-    const setKey = createSetKey(exerciseName, setNumber);
-    const newCompletedSets = new globalThis.Set(completedSets);
-    
-    if (completedSets.has(setKey)) {
-      newCompletedSets.delete(setKey);
-    } else {
-      newCompletedSets.add(setKey);
-      const exercise = Array.isArray((workout as any).exercises)
-        ? (workout as any).exercises.find((ex: any) => ex.exercise === exerciseName)
-        : undefined;
-      if (exercise) {
-        startTimer(exercise.rest_between_sets);
-      }
-      
-      setTimeout(() => {
-        const nextUnfinishedSet = findNextUnfinishedSet(newCompletedSets);
-        if (nextUnfinishedSet) {
-          const element = document.getElementById(`set-${nextUnfinishedSet.exercise}-${nextUnfinishedSet.set}`);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      for (const exercise of exercises) {
+        for (const workoutSet of exercise.sets) {
+          const setKey = buildSetKey(exercise.exercise, workoutSet.set);
+          if (setKey !== null && !completed.has(setKey)) {
+            return { exercise: exercise.exercise, set: workoutSet.set };
           }
         }
-      }, 100);
-    }
-    
-    setCompletedSets(newCompletedSets);
-  };
-
-  const findNextUnfinishedSet = (completed: globalThis.Set<number>) => {
-    if (!Array.isArray((workout as any).exercises)) return null;
-    
-    for (const exercise of (workout as any).exercises) {
-      for (const workoutSet of exercise.sets) {
-        const setKey = createSetKey(exercise.exercise, workoutSet.set);
-        if (!completed.has(setKey)) {
-          return { exercise: exercise.exercise, set: workoutSet.set };
-        }
       }
-    }
-    return null;
-  };
+      return null;
+    },
+    [exercises]
+  );
 
-  const handleSetSkip = (exerciseName: string, setNumber: number) => {
-    const setKey = createSetKey(exerciseName, setNumber);
-    const newCompletedSets = new globalThis.Set(completedSets);
-    newCompletedSets.add(setKey);
-    setCompletedSets(newCompletedSets);
-  };
+  const handleSetToggle = useCallback(
+    (exerciseName: string, setNumber: number) => {
+      const setKey = buildSetKey(exerciseName, setNumber);
+      if (setKey === null) return;
 
-  const handleExerciseToggle = (exerciseName: string, isOpen: boolean) => {
-    if (isOpen) {
-      setOpenExercises(new globalThis.Set([exerciseName]));
-    } else {
-      setOpenExercises(new globalThis.Set());
-    }
-  };
+      const nextCompleted = new Set(completedSets);
 
-  const resetDay = () => {
-    setCompletedSets(new globalThis.Set());
-    setOpenExercises(new globalThis.Set());
+      if (nextCompleted.has(setKey)) {
+        nextCompleted.delete(setKey);
+      } else {
+        nextCompleted.add(setKey);
+
+        const exercise = exercises.find((ex) => ex.exercise === exerciseName);
+        if (exercise) {
+          startTimer(exercise.rest_between_sets);
+        }
+
+        setTimeout(() => {
+          const nextUnfinished = findNextUnfinishedSet(nextCompleted);
+          if (nextUnfinished) {
+            const element = document.getElementById(
+              `set-${nextUnfinished.exercise}-${nextUnfinished.set}`
+            );
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          }
+        }, 100);
+      }
+
+      setCompletedSets(nextCompleted);
+    },
+    [completedSets, exercises, startTimer, findNextUnfinishedSet]
+  );
+
+  const handleSetSkip = useCallback(
+    (exerciseName: string, setNumber: number) => {
+      const setKey = buildSetKey(exerciseName, setNumber);
+      if (setKey === null) return;
+
+      const nextCompleted = new Set(completedSets);
+      nextCompleted.add(setKey);
+      setCompletedSets(nextCompleted);
+    },
+    [completedSets]
+  );
+
+  const handleExerciseToggle = useCallback((exerciseName: string, isOpen: boolean) => {
+    setOpenExercises(isOpen ? new Set([exerciseName]) : new Set());
+  }, []);
+
+  const resetDay = useCallback(() => {
+    setCompletedSets(new Set());
+    setOpenExercises(new Set());
     stopTimer();
     localStorage.removeItem(`workout-progress-${day}`);
-  };
+  }, [day, stopTimer]);
 
-  const testSound = async () => {
+  const testSound = useCallback(async () => {
     const success = await testAudio();
     setAudioInitialized(success);
     if (!success) {
       console.warn('Sound test failed - audio may not work when timer ends');
     }
-  };
+  }, []);
 
-  if (!Array.isArray((workout as any).exercises) || (workout as any).exercises.length === 0) {
+  if (!Array.isArray(exercises) || exercises.length === 0) {
     return null;
   }
 
@@ -205,8 +220,8 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
           onStop={stopTimer}
         />
       )}
-      
-      <div 
+
+      <div
         className={`sticky top-0 z-40 p-4 border-b border-border backdrop-blur-sm bg-background/80 transition-all duration-300 flex-none`}
         style={{ '--day-color': dayColor } as React.CSSProperties}
       >
@@ -217,18 +232,11 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
               <p className="text-sm text-muted-foreground">{workout.name}</p>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <div className="relative">
               <svg className="w-8 h-8 transform -rotate-90">
-                <circle
-                  cx="16"
-                  cy="16"
-                  r="14"
-                  fill="none"
-                  stroke="hsl(var(--muted))"
-                  strokeWidth="2"
-                />
+                <circle cx="16" cy="16" r="14" fill="none" stroke="hsl(var(--muted))" strokeWidth="2" />
                 <circle
                   cx="16"
                   cy="16"
@@ -242,12 +250,10 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-xs font-medium">
-                  {Math.round(progress)}%
-                </span>
+                <span className="text-xs font-medium">{Math.round(progress)}%</span>
               </div>
             </div>
-            
+
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
@@ -273,7 +279,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
         </div>
       </div>
       <div className="space-y-4 p-4 flex-1 min-h-0 overflow-y-auto">
-        {workout.exercises?.map((exercise) => (
+        {exercises.map((exercise) => (
           <ExerciseCard
             key={exercise.exercise}
             exercise={exercise}

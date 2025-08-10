@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -36,14 +36,14 @@ const App = () => {
   }, [isManualSelection]);
 
   const workoutPlan = workoutData as WorkoutPlan;
-  const availableDays = Object.keys(workoutPlan.workout_plan);
-  const workout = workoutPlan.workout_plan[currentDay as keyof typeof workoutPlan.workout_plan];
+  const availableDays = useMemo(() => Object.keys(workoutPlan.workout_plan), [workoutPlan.workout_plan]);
+  const workout = useMemo(() => workoutPlan.workout_plan[currentDay as keyof typeof workoutPlan.workout_plan], [currentDay, workoutPlan.workout_plan]);
 
-  const handleDayChange = (day: string) => {
+  const handleDayChange = useCallback((day: string) => {
     setCurrentDay(day);
     setIsManualSelection(true);
     window.location.hash = `#/${day}`;
-  };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
