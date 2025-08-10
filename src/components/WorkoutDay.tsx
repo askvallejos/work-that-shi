@@ -196,7 +196,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
   }
 
   return (
-    <div className="h-screen bg-background pb-20 flex flex-col overflow-hidden">
+    <div className="h-full min-h-0 bg-background pb-20 flex flex-col overflow-hidden">
       {timer.isActive && (
         <TimerBanner
           timeLeft={timer.timeLeft}
@@ -207,9 +207,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
       )}
       
       <div 
-        className={`sticky top-0 z-40 p-4 border-b border-border backdrop-blur-sm bg-background/80 transition-all duration-300 ${
-          timer.isActive ? 'mt-24' : ''
-        } flex-none`}
+        className={`sticky top-0 z-40 p-4 border-b border-border backdrop-blur-sm bg-background/80 transition-all duration-300 flex-none`}
         style={{ '--day-color': dayColor } as React.CSSProperties}
       >
         <div className="flex items-center justify-between">
@@ -274,7 +272,7 @@ export const WorkoutDay = ({ day, workout }: WorkoutDayProps) => {
           </div>
         </div>
       </div>
-      <div className="space-y-4 p-4 flex-1 overflow-y-auto">
+      <div className="space-y-4 p-4 flex-1 min-h-0 overflow-y-auto">
         {workout.exercises?.map((exercise) => (
           <ExerciseCard
             key={exercise.exercise}

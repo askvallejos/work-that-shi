@@ -50,18 +50,20 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <div className="min-h-screen bg-background mt-12">
-          <div className="container mx-auto px-4 py-6 w-lg">
+        <div className="h-screen bg-background overflow-hidden">
+          <div className="container mx-auto px-4 py-6 w-lg h-full flex flex-col overflow-hidden">
             <DaySelector 
               selectedDay={currentDay}
               onDayChange={handleDayChange}
               availableDays={availableDays}
             />
-            {workout && workout.exercises ? (
-              <WorkoutDay day={currentDay} workout={workout} />
-            ) : (
-              <RestDay day={currentDay} />
-            )}
+            <div className="flex-1 min-h-0 overflow-hidden">
+              {workout && workout.exercises ? (
+                <WorkoutDay day={currentDay} workout={workout} />
+              ) : (
+                <RestDay day={currentDay} />
+              )}
+            </div>
           </div>
         </div>
       </TooltipProvider>
