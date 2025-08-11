@@ -25,7 +25,7 @@
           "rest_between_sets": 90
         },
         {
-          "exercise": "Seated Shoulder Press (Dumbbell)",
+          "exercise": "Overhead Press (Dumbbell)",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
@@ -35,7 +35,7 @@
           "rest_between_sets": 90
         },
         {
-          "exercise": "One-Arm Dumbbell Row",
+          "exercise": "Meadows Row",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
@@ -76,7 +76,7 @@
       "name": "Lower A + Core",
       "exercises": [
         {
-          "exercise": "Squat (Barbell)",
+          "exercise": "Zercher Squat",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
@@ -121,11 +121,16 @@
       ]
     },
 
+    "tuesday": {
+      "name": "Rest"
+    },
+
+
     "wednesday": {
       "name": "Upper B (Push/Pull)",
       "exercises": [
         {
-          "exercise": "Bench Press (Barbell)",
+          "exercise": "Bench Press (Dumbbell)",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
@@ -175,7 +180,7 @@
           "rest_between_sets": 90
         },
         {
-          "exercise": "Close-Grip Bench Press (Barbell)",
+          "exercise": "Close-Grip Bench Press (Dumbbell)",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
@@ -187,11 +192,15 @@
       ]
     },
 
+    "thursday": {
+      "name": "Rest"
+    },
+
     "friday": {
       "name": "Lower B + Arms/Delts",
       "exercises": [
         {
-          "exercise": "Paused Squat (Barbell)",
+          "exercise": "Zercher Squat",
           "sets": [
             { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
             { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
@@ -243,6 +252,10 @@
           "rest_between_sets": 90
         }
       ]
+    },
+
+    "saturday": {
+      "name": "Rest"
     }
   }
 }
