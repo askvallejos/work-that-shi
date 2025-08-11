@@ -11,7 +11,11 @@ interface SetRowProps {
 
 export const SetRow = ({ set, exerciseName: _exerciseName, isCompleted, onToggle, onSkip: _onSkip }: SetRowProps) => {
 
-  const formatReps = (from: number, to: number) => (from === to ? `${from}` : `${from}-${to}`);
+  const formatReps = (from: number, to: number) => {
+    if (from === 1 && to === 99) return 'AMRAP';
+    return from === to ? `${from}` : `${from}-${to}`;
+  };  
+  
   const formatWeight = (weight: number) => `${weight} lbs`;
 
   return (

@@ -25,7 +25,7 @@ export const DaySelector = ({ selectedDay, onDayChange, availableDays }: DaySele
         </SelectTrigger>
         <SelectContent>
           {availableDays.map((day) => (
-            <SelectItem key={day} value={day}>
+            <SelectItem key={day} value={day} className="text-1xl">
               {dayNames[day]}
             </SelectItem>
           ))}
