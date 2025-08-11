@@ -1,5 +1,3 @@
-// Removed unused imports for improved clarity
-
 interface RestDayProps {
   day: string;
 }

@@ -133,22 +133,4 @@
   .timer-banner {
     @apply bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg shadow-blue-500/25;
   }
-
-  .haptic-feedback {
-    animation: haptic 0.1s ease-in-out;
-  }
-
-  @keyframes haptic {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(0.95); }
-  }
-
-  .swipe-hint {
-    @apply relative overflow-hidden;
-  }
-
-  .swipe-hint::after {
-    content: none;
-    display: none;
-  }
 }
