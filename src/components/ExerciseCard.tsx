@@ -79,7 +79,6 @@ export const ExerciseCard = ({
                 <tr className="bg-muted/30 text-xs font-medium text-muted-foreground border-b border-border/50">
                   <th className="p-3 w-8"></th>
                   <th className="p-3 w-8 text-center">Set</th>
-                  <th className="p-3 w-16 text-left">Type</th>
                   <th className="p-3 text-center">Reps</th>
                   <th className="p-3 text-center">Weight</th>
                 </tr>

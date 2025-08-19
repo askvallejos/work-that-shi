@@ -39,12 +39,6 @@ export const SetRow = ({ set, exerciseName: _exerciseName, isCompleted, onToggle
         {set.set}
       </td>
       
-      <td className="p-3 w-16 border-b border-border/50 relative">
-        <span className={`set-chip ${set.type === 'warm_up' ? 'warm-up' : 'work'} w-full text-center`}>
-          {set.type === 'warm_up' ? 'Warm-up' : 'Work'}
-        </span>
-      </td>
-      
       <td className="p-3 text-center text-sm font-medium border-b border-border/50 relative">
         {formatReps(set.reps_from, set.reps_to)}
       </td>

@@ -1,6 +1,5 @@
 export interface WorkoutSet {
   set: number;
-  type: 'warm_up' | 'work';
   reps_from: number;
   reps_to: number;
   weight: number;

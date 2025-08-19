@@ -1,120 +1,108 @@
 {
   "workout_plan": {
     "sunday": {
-      "name": "Upper A (Push/Pull)",
+      "name": "Day 1: Upper",
       "exercises": [
         {
-          "exercise": "Bench Press (Dumbbell)",
+          "exercise": "Bench Press",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Pull-Ups (Neutral Grip)",
+          "exercise": "Pull-Ups",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 5, "reps_to": 6, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 4, "reps_to": 5, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 5, "type": "work", "reps_from": 1, "reps_to": 99, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 3, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Overhead Press (Dumbbell)",
+          "exercise": "Seated Overhead Press",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Meadows Row",
+          "exercise": "Row",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 5, "type": "work", "reps_from": 1, "reps_to": 99, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 3, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Incline Curl (Dumbbell)",
+          "exercise": "Incline Curl",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 10, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 10, "weight": 0 }
           ],
-          "rest_between_sets": 90
+          "rest_between_sets": 60
         },
         {
-          "exercise": "Overhead Tricep Extension (Dumbbell)",
+          "exercise": "Overhead Tricep Extension",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 10, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 10, "weight": 0 }
           ],
-          "rest_between_sets": 90
+          "rest_between_sets": 60
         },
         {
-          "exercise": "Lateral Raise (Dumbbell)",
+          "exercise": "Lateral Raise",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 10, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 10, "weight": 0 }
           ],
-          "rest_between_sets": 90
+          "rest_between_sets": 60
         }
       ]
     },
 
     "monday": {
-      "name": "Lower A + Core",
+      "name": "Day 2: Lower + Core",
       "exercises": [
         {
           "exercise": "Zercher Squat",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 4, "reps_to": 6, "weight": 0 }
+            { "set": 1, "reps_from": 4, "reps_to": 6, "weight": 0 },
+            { "set": 2, "reps_from": 4, "reps_to": 6, "weight": 0 }
           ],
           "rest_between_sets": 120
         },
         {
-          "exercise": "Romanian Deadlift (Barbell)",
+          "exercise": "Romanian Deadlift",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 120
         },
         {
-          "exercise": "Bulgarian Split Squat (Dumbbell)",
+          "exercise": "Bulgarian Split Squat",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 12, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 12, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 12, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 12, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Walking Lunge (Dumbbell)",
+          "exercise": "Walking Lunge",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 20, "reps_to": 30, "weight": 0 }
+            { "set": 1, "reps_from": 20, "reps_to": 30, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
           "exercise": "Hanging Knee/Leg Raise",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 10, "reps_to": 15, "weight": 0 }
+            { "set": 1, "reps_from": 10, "reps_to": 15, "weight": 0 },
+            { "set": 2, "reps_from": 10, "reps_to": 15, "weight": 0 }
           ],
           "rest_between_sets": 60
         }
@@ -125,69 +113,58 @@
       "name": "Rest"
     },
 
-
     "wednesday": {
-      "name": "Upper B (Push/Pull)",
+      "name": "Day 3: Upper",
       "exercises": [
         {
-          "exercise": "Bench Press (Dumbbell)",
+          "exercise": "Bench Press",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
           "exercise": "Pull-Ups",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 5, "reps_to": 6, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 4, "reps_to": 5, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 5, "type": "work", "reps_from": 1, "reps_to": 99, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 3, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Incline Bench Press (Dumbbell)",
+          "exercise": "Incline Bench Press",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Barbell Row",
+          "exercise": "Row",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 5, "type": "work", "reps_from": 1, "reps_to": 99, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 3, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
           "exercise": "Bicep Curl",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 10, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 10, "weight": 0 }
           ],
-          "rest_between_sets": 90
+          "rest_between_sets": 60
         },
         {
-          "exercise": "Close-Grip Bench Press (Dumbbell)",
+          "exercise": "Close-Grip Bench Press",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 10, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 10, "weight": 0 }
           ],
-          "rest_between_sets": 90
+          "rest_between_sets": 60
         }
       ]
     },
@@ -197,57 +174,53 @@
     },
 
     "friday": {
-      "name": "Lower B + Arms/Delts",
+      "name": "Day 4: Lower + Arms",
       "exercises": [
         {
           "exercise": "Zercher Squat",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 6, "reps_to": 8, "weight": 0 }
+            { "set": 1, "reps_from": 6, "reps_to": 8, "weight": 0 },
+            { "set": 2, "reps_from": 6, "reps_to": 8, "weight": 0 }
           ],
           "rest_between_sets": 120
         },
         {
-          "exercise": "Lateral Raise (Dumbbell)",
+          "exercise": "Lateral Raise",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 1, "reps_to": 99, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 10, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 10, "weight": 0 },
+            { "set": 3, "reps_from": 8, "reps_to": 10, "weight": 0 }
+          ],
+          "rest_between_sets": 60
+        },
+        {
+          "exercise": "Hip Thrust",
+          "sets": [
+            { "set": 1, "reps_from": 8, "reps_to": 12, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 12, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Barbell Hip Thrust",
+          "exercise": "Concentration Curl",
           "sets": [
-            { "set": 1, "type": "warm_up", "reps_from": 8, "reps_to": 10, "weight": 0 },
-            { "set": 2, "type": "warm_up", "reps_from": 6, "reps_to": 8, "weight": 0 },
-            { "set": 3, "type": "work", "reps_from": 8, "reps_to": 12, "weight": 0 },
-            { "set": 4, "type": "work", "reps_from": 8, "reps_to": 12, "weight": 0 }
-          ],
-          "rest_between_sets": 120
-        },
-        {
-          "exercise": "Preacher Curl (Dumbbell)",
-          "sets": [
-            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 12, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 12, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 12, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 12, "weight": 0 }
           ],
           "rest_between_sets": 90
         },
         {
-          "exercise": "Overhead Tricep Extension (Dumbbell)",
+          "exercise": "Overhead Tricep Extension",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 12, "weight": 0 },
-            { "set": 2, "type": "work", "reps_from": 8, "reps_to": 12, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 12, "weight": 0 },
+            { "set": 2, "reps_from": 8, "reps_to": 12, "weight": 0 }
           ],
-          "rest_between_sets": 90
+          "rest_between_sets": 60
         },
         {
-          "exercise": "Bulgarian Split Squat (Dumbbell)",
+          "exercise": "Bulgarian Split Squat",
           "sets": [
-            { "set": 1, "type": "work", "reps_from": 8, "reps_to": 12, "weight": 0 }
+            { "set": 1, "reps_from": 8, "reps_to": 12, "weight": 0 }
           ],
           "rest_between_sets": 90
         }
